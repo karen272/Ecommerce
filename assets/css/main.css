@@ -1399,7 +1399,7 @@ h6 {
 --------------------------------------------------------------*/
 .footer {
   color: var(--default-color);
-  background-color: var(--background-color);
+  background-color: #6b1b22;
   font-size: 14px;
   position: relative;
 }
