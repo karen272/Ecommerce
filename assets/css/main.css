@@ -1,17 +1,5 @@
-/**
-* Template Name: NiceShop
-* Template URL: https://bootstrapmade.com/niceshop-bootstrap-ecommerce-template/
-* Updated: Jul 25 2025 with Bootstrap v5.3.7
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
 @charset "UTF-8";
-
-/*--------------------------------------------------------------
-# Font & Color Variables
-# Help: https://bootstrapmade.com/color-system/
---------------------------------------------------------------*/
 /* Fonts */
 :root {
   --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -21,10 +9,11 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
+  
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #000000; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #252223; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --heading-color: #E63946; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #E63946; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
@@ -1857,24 +1846,30 @@ section,
 # Hero Section
 --------------------------------------------------------------*/
 .hero {
+  /* Fondo: imagen + capa oscura para mejor contraste */
+  background-image: 
+    linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.4) 100%),
+    url('../img/image.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Efecto parallax */
   padding-top: 100px;
-  background: linear-gradient(135deg, var(--surface-color) 0%, color-mix(in srgb, var(--accent-color), transparent 95%) 100%);
+  padding-bottom: 100px;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding-bottom: 100px;
 }
 
 .hero::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
+  left: 0;
   right: 0;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(45deg, color-mix(in srgb, var(--accent-color), transparent 94%) 0%, color-mix(in srgb, var(--heading-color), transparent 98%) 100%);
-  clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
   z-index: -1;
 }
 
@@ -1886,6 +1881,23 @@ section,
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
+  z-index: 2;
+}
+.hero .hero-title,
+.hero .hero-description,
+.hero .btn-primary {
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+.hero .features-list .feature-item span {
+  color: white !important;
+  font-weight: 500;
+}
+.hero .hero-description {
+  color: white !important;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); /* Opcional: mejora legibilidad */
 }
 
 @media (max-width: 992px) {
