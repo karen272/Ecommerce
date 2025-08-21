@@ -4,12 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Checkout - NiceShop Bootstrap Template</title>
+  <title>Pochoclos "La 22" - Verificar</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/logo.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
@@ -28,19 +28,13 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: NiceShop
-  * Template URL: https://bootstrapmade.com/niceshop-bootstrap-ecommerce-template/
-  * Updated: Jul 25 2025 with Bootstrap v5.3.7
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
 </head>
 
 <body class="checkout-page">
 
   <header id="header" class="header sticky-top">
-
+    
     <!-- Main Header -->
     <div class="main-header">
       <div class="container-fluid container-xl">
@@ -49,8 +43,8 @@
           <!-- Logo -->
           <a href="index.html" class="logo d-flex align-items-center">
             <!-- Uncomment the line below if you also wish to use an image logo -->
-            <!-- <img src="assets/img/logo.webp" alt=""> -->
-            <h1 class="sitename">NiceShop</h1>
+            <img src="assets/img/logo.png" alt="">
+            <h1 class="sitename">Pochoclos "La 22"</h1>
           </a>
 
           <!-- Search -->
@@ -131,12 +125,12 @@
       <div class="container-fluid container-xl position-relative">
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="category.html">Category</a></li>
             <li><a href="product-details.html">Product Details</a></li>
             <li><a href="cart.html">Cart</a></li>
-            <li><a href="checkout.html" class="active">Checkout</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
             <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
                 <li><a href="#">Dropdown 1</a></li>
@@ -739,11 +733,11 @@
     <!-- Page Title -->
     <div class="page-title light-background">
       <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">Checkout</h1>
+        <h1 class="mb-2 mb-lg-0">Verificar</h1>
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Checkout</li>
+            <li><a href="index.html">Inicio</a></li>
+            <li class="current">Verificar</li>
           </ol>
         </nav>
       </div>
@@ -763,25 +757,25 @@
                 <div class="checkout-section" id="customer-info">
                   <div class="section-header">
                     <div class="section-number">1</div>
-                    <h3>Customer Information</h3>
+                    <h3>Información del cliente</h3>
                   </div>
                   <div class="section-content">
                     <div class="row">
                       <div class="col-md-6 form-group">
-                        <label for="first-name">First Name</label>
+                        <label for="first-name">Nombre</label>
                         <input type="text" name="first-name" class="form-control" id="first-name" placeholder="Your First Name" required="">
                       </div>
                       <div class="col-md-6 form-group">
-                        <label for="last-name">Last Name</label>
+                        <label for="last-name">Apellido</label>
                         <input type="text" name="last-name" class="form-control" id="last-name" placeholder="Your Last Name" required="">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="email">Email Address</label>
+                      <label for="email">Email</label>
                       <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="">
                     </div>
                     <div class="form-group">
-                      <label for="phone">Phone Number</label>
+                      <label for="phone">Número de teléfono</label>
                       <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone Number" required="">
                     </div>
                   </div>
@@ -791,54 +785,39 @@
                 <div class="checkout-section" id="shipping-address">
                   <div class="section-header">
                     <div class="section-number">2</div>
-                    <h3>Shipping Address</h3>
+                    <h3>Dirección de envío</h3>
                   </div>
                   <div class="section-content">
                     <div class="form-group">
-                      <label for="address">Street Address</label>
+                      <label for="address">Direccion de la calle</label>
                       <input type="text" class="form-control" name="address" id="address" placeholder="Street Address" required="">
                     </div>
                     <div class="form-group">
-                      <label for="apartment">Apartment, Suite, etc. (optional)</label>
+                      <label for="apartment">Departamento etc. (optional)</label>
                       <input type="text" class="form-control" name="apartment" id="apartment" placeholder="Apartment, Suite, Unit, etc.">
                     </div>
                     <div class="row">
                       <div class="col-md-4 form-group">
-                        <label for="city">City</label>
+                        <label for="city">Ciudad</label>
                         <input type="text" name="city" class="form-control" id="city" placeholder="City" required="">
                       </div>
                       <div class="col-md-4 form-group">
-                        <label for="state">State</label>
-                        <input type="text" name="state" class="form-control" id="state" placeholder="State" required="">
-                      </div>
-                      <div class="col-md-4 form-group">
-                        <label for="zip">ZIP Code</label>
+                        <label for="zip">Código Postal</label>
                         <input type="text" name="zip" class="form-control" id="zip" placeholder="ZIP Code" required="">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="country">Country</label>
+                      <label for="country">País</label>
                       <select class="form-select" id="country" name="country" required="">
-                        <option value="">Select Country</option>
+                        <option value="">Seleccione País</option>
                         <option value="US">United States</option>
+                        <option value="AR">Argentina</option>
                         <option value="CA">Canada</option>
                         <option value="UK">United Kingdom</option>
                         <option value="AU">Australia</option>
                         <option value="DE">Germany</option>
                         <option value="FR">France</option>
                       </select>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="save-address" name="save-address">
-                      <label class="form-check-label" for="save-address">
-                        Save this address for future orders
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="billing-same" name="billing-same" checked="">
-                      <label class="form-check-label" for="billing-same">
-                        Billing address same as shipping
-                      </label>
                     </div>
                   </div>
                 </div>
@@ -847,7 +826,7 @@
                 <div class="checkout-section" id="payment-method">
                   <div class="section-header">
                     <div class="section-number">3</div>
-                    <h3>Payment Method</h3>
+                    <h3>Método de pago</h3>
                   </div>
                   <div class="section-content">
                     <div class="payment-options">
@@ -855,63 +834,16 @@
                         <input type="radio" name="payment-method" id="credit-card" checked="">
                         <label for="credit-card">
                           <span class="payment-icon"><i class="bi bi-credit-card-2-front"></i></span>
-                          <span class="payment-label">Credit / Debit Card</span>
+                          <span class="payment-label">Débito</span>
                         </label>
                       </div>
                       <div class="payment-option">
-                        <input type="radio" name="payment-method" id="paypal">
-                        <label for="paypal">
-                          <span class="payment-icon"><i class="bi bi-paypal"></i></span>
-                          <span class="payment-label">PayPal</span>
+                        <input type="radio" name="payment-method" id="cash">
+                        <label for="cash">
+                          <span class="payment-icon"><i class="bi bi-cash"></i></span>
+                          <span class="payment-label">Efectivo</span>
                         </label>
                       </div>
-                      <div class="payment-option">
-                        <input type="radio" name="payment-method" id="apple-pay">
-                        <label for="apple-pay">
-                          <span class="payment-icon"><i class="bi bi-apple"></i></span>
-                          <span class="payment-label">Apple Pay</span>
-                        </label>
-                      </div>
-                    </div>
-
-                    <div class="payment-details" id="credit-card-details">
-                      <div class="form-group">
-                        <label for="card-number">Card Number</label>
-                        <div class="card-number-wrapper">
-                          <input type="text" class="form-control" name="card-number" id="card-number" placeholder="1234 5678 9012 3456" required="">
-                          <div class="card-icons">
-                            <i class="bi bi-credit-card-2-front"></i>
-                            <i class="bi bi-credit-card"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6 form-group">
-                          <label for="expiry">Expiration Date</label>
-                          <input type="text" class="form-control" name="expiry" id="expiry" placeholder="MM/YY" required="">
-                        </div>
-                        <div class="col-md-6 form-group">
-                          <label for="cvv">Security Code (CVV)</label>
-                          <div class="cvv-wrapper">
-                            <input type="text" class="form-control" name="cvv" id="cvv" placeholder="123" required="">
-                            <span class="cvv-hint" data-bs-toggle="tooltip" data-bs-placement="top" title="3-digit code on the back of your card">
-                              <i class="bi bi-question-circle"></i>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="card-name">Name on Card</label>
-                        <input type="text" class="form-control" name="card-name" id="card-name" placeholder="John Doe" required="">
-                      </div>
-                    </div>
-
-                    <div class="payment-details d-none" id="paypal-details">
-                      <p class="payment-info">You will be redirected to PayPal to complete your purchase securely.</p>
-                    </div>
-
-                    <div class="payment-details d-none" id="apple-pay-details">
-                      <p class="payment-info">You will be prompted to authorize payment with Apple Pay.</p>
                     </div>
                   </div>
                 </div>
@@ -920,20 +852,113 @@
                 <div class="checkout-section" id="order-review">
                   <div class="section-header">
                     <div class="section-number">4</div>
-                    <h3>Review &amp; Place Order</h3>
+                    <h3>Revisar &amp;  Comprar</h3>
                   </div>
+                  <div class="col-lg-5">
+            <!-- Order Summary -->
+            <div class="order-summary" data-aos="fade-left" data-aos-delay="200">
+              <div class="order-summary-header">
+                <h3>Resumen del pedido</h3>
+                <span class="item-count">3 artículos</span>
+              </div>
+
+              <div class="order-summary-content">
+                <div class="order-items">
+                  <!-- Pochoclos Dulces -->
+                  <div class="order-item">
+                    <div class="order-item-image">
+                      <img src="assets/img/product/pochoclo1.png" alt="Pochoclos Dulces" class="img-fluid">
+                    </div>
+                    <div class="order-item-details">
+                      <h4>Pochoclos Dulces</h4>
+                      <p class="order-item-variant">Tamaño: Grande</p>
+                      <div class="order-item-price">
+                        <span class="quantity">1 ×</span>
+                        <span class="price">$3.000</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Algodón de Azúcar -->
+                  <div class="order-item">
+                    <div class="order-item-image">
+                      <img src="assets/img/product/copo.png" alt="Algodón de Azúcar" class="img-fluid">
+                    </div>
+                    <div class="order-item-details">
+                      <h4>Algodón de Azúcar</h4>
+                      <p class="order-item-variant">Tamaño: Mediano</p>
+                      <div class="order-item-price">
+                        <span class="quantity">1 ×</span>
+                        <span class="price">$3.000</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Gara de Maní -->
+                  <div class="order-item">
+                    <div class="order-item-image">
+                      <img src="assets/img/product/garraAlmendraa.png" alt="Garrapiñada de Maní" class="img-fluid">
+                    </div>
+                    <div class="order-item-details">
+                      <h4>Garrapiñada de Maní</h4>
+                      <p class="order-item-variant">Tamaño: Grande</p>
+                      <div class="order-item-price">
+                        <span class="quantity">2 ×</span>
+                        <span class="price">$3.000</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Eliminamos el promo code si no se usa -->
+                <!-- <div class="promo-code"> ... </div> -->
+
+                <div class="order-totals">
+                  <div class="order-subtotal d-flex justify-content-between">
+                    <span>Subtotal</span>
+                    <span>$12.000</span>
+                  </div>
+                  <div class="order-shipping d-flex justify-content-between">
+                    <span>Envío</span>
+                    <span>Gratis</span>
+                  </div>
+                  <div class="order-tax d-flex justify-content-between">
+                    <span>Impuestos</span>
+                    <span>$0</span>
+                  </div>
+                  <div class="order-total d-flex justify-content-between">
+                    <span><strong>Total</strong></span>
+                    <span><strong>$12.000</strong></span>
+                  </div>
+                </div>
+
+                <!-- Medios de pago (solo efectivo y transferencia) -->
+                <div class="secure-checkout">
+                  <div class="secure-checkout-header">
+                    <i class="bi bi-shield-lock"></i>
+                    <span>Medios de Pago</span>
+                  </div>
+                  <div class="payment-icons">
+                    <i class="bi bi-cash" aria-label="Efectivo"></i>
+                    <i class="bi bi-paypal" aria-label="Mercado Pago"></i>
+                  </div>
+                  <small class="text-muted mt-2">Podés pagar en efectivo al recibir o por transferencia (Mercado Pago).</small>
+                </div>
+              </div>
+            </div>
+          </div>
                   <div class="section-content">
                     <div class="form-check terms-check">
                       <input class="form-check-input" type="checkbox" id="terms" name="terms" required="">
                       <label class="form-check-label" for="terms">
-                        I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms and Conditions</a> and <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
+                        Acepto los <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Términos y Condiciones</a> y <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">La Política de Privacidad</a>
                       </label>
                     </div>
-                    <div class="success-message d-none">Your order has been placed successfully! Thank you for your purchase.</div>
+                    <div class="success-message d-none">¡Tu pedido se ha realizado correctamente! Gracias por tu compra.</div>
                     <div class="place-order-container">
                       <button type="submit" class="btn btn-primary place-order-btn">
-                        <span class="btn-text">Place Order</span>
-                        <span class="btn-price">$240.96</span>
+                        <span class="btn-text">Realizar pedido</span>
+                        <span class="btn-price">$12.000</span>
                       </button>
                     </div>
                   </div>
@@ -942,86 +967,7 @@
             </div>
           </div>
 
-          <div class="col-lg-5">
-            <!-- Order Summary -->
-            <div class="order-summary" data-aos="fade-left" data-aos-delay="200">
-              <div class="order-summary-header">
-                <h3>Order Summary</h3>
-                <span class="item-count">2 Items</span>
-              </div>
-
-              <div class="order-summary-content">
-                <div class="order-items">
-                  <div class="order-item">
-                    <div class="order-item-image">
-                      <img src="assets/img/product/product-1.webp" alt="Product" class="img-fluid">
-                    </div>
-                    <div class="order-item-details">
-                      <h4>Lorem Ipsum Dolor</h4>
-                      <p class="order-item-variant">Color: Black | Size: M</p>
-                      <div class="order-item-price">
-                        <span class="quantity">1 ×</span>
-                        <span class="price">$89.99</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="order-item">
-                    <div class="order-item-image">
-                      <img src="assets/img/product/product-2.webp" alt="Product" class="img-fluid">
-                    </div>
-                    <div class="order-item-details">
-                      <h4>Sit Amet Consectetur</h4>
-                      <p class="order-item-variant">Color: White | Size: L</p>
-                      <div class="order-item-price">
-                        <span class="quantity">2 ×</span>
-                        <span class="price">$59.99</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="promo-code">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Promo Code" aria-label="Promo Code">
-                    <button class="btn btn-outline-primary" type="button">Apply</button>
-                  </div>
-                </div>
-
-                <div class="order-totals">
-                  <div class="order-subtotal d-flex justify-content-between">
-                    <span>Subtotal</span>
-                    <span>$209.97</span>
-                  </div>
-                  <div class="order-shipping d-flex justify-content-between">
-                    <span>Shipping</span>
-                    <span>$9.99</span>
-                  </div>
-                  <div class="order-tax d-flex justify-content-between">
-                    <span>Tax</span>
-                    <span>$21.00</span>
-                  </div>
-                  <div class="order-total d-flex justify-content-between">
-                    <span>Total</span>
-                    <span>$240.96</span>
-                  </div>
-                </div>
-
-                <div class="secure-checkout">
-                  <div class="secure-checkout-header">
-                    <i class="bi bi-shield-lock"></i>
-                    <span>Secure Checkout</span>
-                  </div>
-                  <div class="payment-icons">
-                    <i class="bi bi-credit-card-2-front"></i>
-                    <i class="bi bi-credit-card"></i>
-                    <i class="bi bi-paypal"></i>
-                    <i class="bi bi-apple"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
 
         <!-- Terms and Privacy Modals -->
@@ -1076,35 +1022,16 @@
           <div class="col-lg-4 col-md-6">
             <div class="footer-widget footer-about">
               <a href="index.html" class="logo">
-                <span class="sitename">NiceShop</span>
+                <span class="sitename">Pochoclos "La 22"</span>
+                <p>Los mejores pochoclos de Miramar. Te los llevamos a tu casa.</p>
               </a>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in nibh vehicula, facilisis magna ut, consectetur lorem. Proin eget tortor risus.</p>
-
               <div class="social-links mt-4">
                 <h5>Connect With Us</h5>
                 <div class="social-icons">
-                  <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
                   <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                  <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
                   <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
-                  <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
-                  <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-6 col-sm-6">
-            <div class="footer-widget">
-              <h4>Shop</h4>
-              <ul class="footer-links">
-                <li><a href="category.html">New Arrivals</a></li>
-                <li><a href="category.html">Bestsellers</a></li>
-                <li><a href="category.html">Women's Clothing</a></li>
-                <li><a href="category.html">Men's Clothing</a></li>
-                <li><a href="category.html">Accessories</a></li>
-                <li><a href="category.html">Sale</a></li>
-              </ul>
             </div>
           </div>
 
@@ -1116,7 +1043,6 @@
                 <li><a href="account.html">Order Status</a></li>
                 <li><a href="shiping-info.html">Shipping Info</a></li>
                 <li><a href="return-policy.html">Returns &amp; Exchanges</a></li>
-                <li><a href="#">Size Guide</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
               </ul>
             </div>
@@ -1124,36 +1050,26 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="footer-widget">
-              <h4>Contact Information</h4>
+              <h4>Información de contacto</h4>
               <div class="footer-contact">
                 <div class="contact-item">
                   <i class="bi bi-geo-alt"></i>
-                  <span>123 Fashion Street, New York, NY 10001</span>
+                  <span>Calle 21 esquina 22, Miramar, Buenos Aires, Argentina</span>
                 </div>
                 <div class="contact-item">
                   <i class="bi bi-telephone"></i>
-                  <span>+1 (555) 123-4567</span>
+                  <span>+54 (2291) 459738</span>
                 </div>
                 <div class="contact-item">
                   <i class="bi bi-envelope"></i>
-                  <span>hello@example.com</span>
+                  <span>karenceles10@gmail.com</span>
                 </div>
                 <div class="contact-item">
                   <i class="bi bi-clock"></i>
-                  <span>Monday-Friday: 9am-6pm<br>Saturday: 10am-4pm<br>Sunday: Closed</span>
+                  <span>Atención 24/7 todos los dias
                 </div>
               </div>
 
-              <div class="app-buttons mt-4">
-                <a href="#" class="app-btn">
-                  <i class="bi bi-apple"></i>
-                  <span>App Store</span>
-                </a>
-                <a href="#" class="app-btn">
-                  <i class="bi bi-google-play"></i>
-                  <span>Google Play</span>
-                </a>
-              </div>
             </div>
           </div>
         </div>
@@ -1165,14 +1081,11 @@
         <div class="row gy-3 align-items-center">
           <div class="col-lg-6 col-md-12">
             <div class="copyright">
-              <p>© <span>Copyright</span> <strong class="sitename">NiceShop</strong>. All Rights Reserved.</p>
+              <p>© <span>Copyright</span> <strong class="sitename">PochocleraLa22</strong>. Todos los derechos reservados</p>
             </div>
             <div class="credits mt-1">
-              <!-- All the links in the footer should remain intact. -->
-              <!-- You can delete the links only if you've purchased the pro version. -->
-              <!-- Licensing information: https://bootstrapmade.com/license/ -->
-              <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+              
+              Diseñado por <a href="">Karen Celes</a>
             </div>
           </div>
 
@@ -1180,11 +1093,7 @@
             <div class="d-flex flex-wrap justify-content-lg-end justify-content-center align-items-center gap-4">
               <div class="payment-methods">
                 <div class="payment-icons">
-                  <i class="bi bi-credit-card" aria-label="Credit Card"></i>
                   <i class="bi bi-paypal" aria-label="PayPal"></i>
-                  <i class="bi bi-apple" aria-label="Apple Pay"></i>
-                  <i class="bi bi-google" aria-label="Google Pay"></i>
-                  <i class="bi bi-shop" aria-label="Shop Pay"></i>
                   <i class="bi bi-cash" aria-label="Cash on Delivery"></i>
                 </div>
               </div>
