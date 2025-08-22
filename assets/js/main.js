@@ -1,10 +1,19 @@
-/**
-* Template Name: NiceShop
-* Template URL: https://bootstrapmade.com/niceshop-bootstrap-ecommerce-template/
-* Updated: Jul 25 2025 with Bootstrap v5.3.7
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+// Configuración de Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyBNSuFnDg-xU5UetP-ZMS-AbNcqI4yyl9E",
+  authDomain: "ecommerce-9e16e.firebaseapp.com",
+  projectId: "ecommerce-9e16e",
+  storageBucket: "ecommerce-9e16e.appspot.com",
+  messagingSenderId: "267398752873",
+  appId: "1:267398752873:web:6a9a67d23950145ea550f8",
+  measurementId: "G-YL24R21HX5"
+};
+// Inicializar Firebase
+const app = firebase.initializeApp(firebaseConfig);
+
+// Referencias a los servicios que vas a usar
+const db = firebase.firestore();  // Para carrito y pedidos
+const auth = firebase.auth();     // Para login anónimo
 
 (function() {
   "use strict";
