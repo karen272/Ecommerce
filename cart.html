@@ -22,11 +22,7 @@
   <link href="assets/vendor/drift-zoom/drift-basic.css" rel="stylesheet">
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-  <!-- Firebase: SDK con compatibilidad (para usar sin módulos) -->
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-
+  
 </head>
 <body class="cart-page">
   <header id="header" class="header sticky-top">
@@ -62,30 +58,30 @@
               <div class="dropdown-menu">
                 <div class="dropdown-header">
                   <h6>Bienvenido a <span class="sitename">Pochoclos "La 22"</span></h6>
-                  <p class="mb-0">Accede a tu cuenta y gestiona pedidos</p>
+                  <!-- <p class="mb-0">Accede a tu cuenta y gestiona pedidos</p> -->
                 </div>
                 <div class="dropdown-body">
-                  <a class="dropdown-item d-flex align-items-center" href="account.html">
+                  <!-- <a class="dropdown-item d-flex align-items-center" href="account.html">
                     <i class="bi bi-person-circle me-2"></i>
                     <span>Mi Perfil</span>
-                  </a>
-                  <a class="dropdown-item d-flex align-items-center" href="account.html">
+                  </a> -->
+                  <!-- <a class="dropdown-item d-flex align-items-center" href="account.html">
                     <i class="bi bi-bag-check me-2"></i>
                     <span>Mis Pedidos</span>
-                  </a>
+                  </a> -->
                   <a class="dropdown-item d-flex align-items-center" href="account.html">
                     <i class="bi bi-heart me-2"></i>
                     <span>Lista de Deseos</span>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center" href="account.html">
+                  <!-- <a class="dropdown-item d-flex align-items-center" href="account.html">
                     <i class="bi bi-gear me-2"></i>
                     <span>Configuración</span>
-                  </a>
+                  </a> -->
                 </div>
-                <div class="dropdown-footer">
+                <!-- <div class="dropdown-footer">
                   <a href="register.html" class="btn btn-primary w-100 mb-2">Iniciar Sesión</a>
                   <a href="login.html" class="btn btn-outline-primary w-100">Registrarse</a>
-                </div>
+                </div> -->
               </div>
             </div>
             <!-- Wishlist -->
@@ -96,7 +92,7 @@
             <!-- Cart -->
             <a href="cart.html" class="header-action-btn">
               <i class="bi bi-cart3"></i>
-              <span class="badge">3</span>
+              <span class="badge cart-count">0</span>
             </a>
             <!-- Mobile Navigation Toggle -->
             <i class="mobile-nav-toggle d-xl-none bi bi-list me-0"></i>
@@ -109,23 +105,7 @@
       <div class="container-fluid container-xl position-relative">
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">Sobre Nosotros</a></li>
-            <li><a href="category.html">Categorías</a></li>
-            <li><a href="product-details.html">Detalles</a></li>
-            <li><a href="cart.html" class="active">Carrito</a></li>
-            <li><a href="checkout.html">Checkout</a></li>
-            <li class="dropdown"><a href="#"><span>Opciones</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="#">Opción 1</a></li>
-                <li class="dropdown"><a href="#"><span>Submenú</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                  <ul>
-                    <li><a href="#">Sub 1</a></li>
-                    <li><a href="#">Sub 2</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
+            <li><a href="index.html">Inicio</a></li>
             <!-- Mega Menús personalizados (puedes dejarlos o ajustarlos) -->
             <li><a href="contact.html">Contacto</a></li>
           </ul>
@@ -184,135 +164,7 @@
                 </div>
               </div>
 
-              <!-- Ejemplo de productos reales de tu negocio -->
-              <!-- Pochoclos Dulces -->
-              <div class="cart-item">
-                <div class="row align-items-center">
-                  <div class="col-lg-6 col-12 mt-3 mt-lg-0 mb-lg-0 mb-3">
-                    <div class="product-info d-flex align-items-center">
-                      <div class="product-image">
-                        <img src="assets/img/product/pochoclo1.png" alt="Pochoclos Dulces" class="img-fluid" loading="lazy">
-                      </div>
-                      <div class="product-details">
-                        <h6 class="product-title">Pochoclos Dulces</h6>
-                        <div class="product-meta">
-                          <span class="product-size">Tamaño: Grande</span>
-                        </div>
-                        <button class="remove-item" type="button">
-                          <i class="bi bi-trash"></i> Eliminar
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-2 col-12 mt-3 mt-lg-0 text-center">
-                    <div class="price-tag">
-                      <span class="current-price">$3.000</span>
-                    </div>
-                  </div>
-                  <div class="col-lg-2 col-12 mt-3 mt-lg-0 text-center">
-                    <div class="quantity-selector">
-                      <button class="quantity-btn decrease">
-                        <i class="bi bi-dash"></i>
-                      </button>
-                      <input type="number" class="quantity-input" value="1" min="1" max="10">
-                      <button class="quantity-btn increase">
-                        <i class="bi bi-plus"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="col-lg-2 col-12 mt-3 mt-lg-0 text-center">
-                    <div class="item-total">
-                      <span>$3.000</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Algodón de Azúcar -->
-              <div class="cart-item">
-                <div class="row align-items-center">
-                  <div class="col-lg-6 col-12 mt-3 mt-lg-0 mb-lg-0 mb-3">
-                    <div class="product-info d-flex align-items-center">
-                      <div class="product-image">
-                        <img src="assets/img/product/copo.png" alt="Algodón de Azúcar" class="img-fluid" loading="lazy">
-                      </div>
-                      <div class="product-details">
-                        <h6 class="product-title">Algodón de Azúcar</h6>
-                        <div class="product-meta">
-                          <span class="product-size">Tamaño: Mediano</span>
-                        </div>
-                        <button class="remove-item" type="button">
-                          <i class="bi bi-trash"></i> Eliminar
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-2 col-12 mt-3 mt-lg-0 text-center">
-                    <div class="price-tag">
-                      <span class="current-price">$3.000</span>
-                    </div>
-                  </div>
-                  <div class="col-lg-2 col-12 mt-3 mt-lg-0 text-center">
-                    <div class="quantity-selector">
-                      <button class="quantity-btn decrease">
-                        <i class="bi bi-dash"></i>
-                      </button>
-                      <input type="number" class="quantity-input" value="1" min="1" max="10">
-                      <button class="quantity-btn increase">
-                        <i class="bi bi-plus"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="col-lg-2 col-12 mt-3 mt-lg-0 text-center">
-                    <div class="item-total">
-                      <span>$3.000</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Gara de Maní -->
-              <div class="cart-item">
-                <div class="row align-items-center">
-                  <div class="col-lg-6 col-12 mt-3 mt-lg-0 mb-lg-0 mb-3">
-                    <div class="product-info d-flex align-items-center">
-                      <div class="product-image">
-                        <img src="assets/img/product/garraAlmendraa.png" alt="Garrapiñada de Maní" class="img-fluid" loading="lazy">
-                      </div>
-                      <div class="product-details">
-                        <h6 class="product-title">Garrapiñada de Maní</h6>
-                        <div class="product-meta">
-                          <span class="product-size">Tamaño: Grande</span>
-                        </div>
-                        <button class="remove-item" type="button">
-                          <i class="bi bi-trash"></i> Eliminar
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-2 col-12 mt-3 mt-lg-0 text-center">
-                    <div class="price-tag">
-                      <span class="current-price">$3.000</span>
-                    </div>
-                  </div>
-                  <div class="col-lg-2 col-12 mt-3 mt-lg-0 text-center">
-                    <div class="quantity-selector">
-                      <button class="quantity-btn decrease">
-                        <i class="bi bi-dash"></i>
-                      </button>
-                      <input type="number" class="quantity-input" value="2" min="1" max="10">
-                      <button class="quantity-btn increase">
-                        <i class="bi bi-plus"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="col-lg-2 col-12 mt-3 mt-lg-0 text-center">
-                    <div class="item-total">
-                      <span>$6.000</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
 
               <!-- Acciones del carrito -->
               <div class="cart-actions">
@@ -357,14 +209,10 @@
                   </div>
                 </div>
               </div>
-              <div class="summary-item">
-                <span class="summary-label">Impuestos</span>
-                <span class="summary-value">$0</span>
-              </div>
-              <div class="summary-item discount">
+              <!-- <div class="summary-item discount">
                 <span class="summary-label">Descuento</span>
                 <span class="summary-value">-$0</span>
-              </div>
+              </div> -->
               <div class="summary-total">
                 <span class="summary-label">Total</span>
                 <span class="summary-value">$12.000</span>
@@ -498,5 +346,6 @@
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/carrito.js"></script>
 </body>
 </html>
