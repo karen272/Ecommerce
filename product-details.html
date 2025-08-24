@@ -247,7 +247,7 @@
                 <div class="benefit-item">
                   <i class="bi bi-truck"></i>
                   <span>Delivery gratis a partir de $9.000</span>
-                </div>
+                </div>S
                 <div class="benefit-item">
                   <i class="bi bi-shield-check"></i>
                   <span>Calidad asegurada</span>
@@ -256,9 +256,6 @@
             </div>
           </div>
         </div>
-
-        
-
       </div>
     </section><!-- /Product Details Section -->
 
@@ -274,10 +271,10 @@
                 <span class="sitename">Pochoclos "La 22"</span>
               </a>
               <div class="social-links mt-4">
-                <h5>Connect With Us</h5>
+                <h5>Contactate con nosotros</h5>
                 <div class="social-icons">
-                  <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                  <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+                  <a href="https://www.instagram.com/pochoclosla22/" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                  <!-- <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a> -->
                 </div>
               </div>
             </div>
@@ -363,7 +360,96 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/carrito.js"></script>
+<script>
+const productos = {
+  1: {
+    nombre: "Pochoclos Dulces",
+    precio: 3000,
+    precioOriginal: 4500,
+    descripcion: "Disfrutá nuestros pochoclos dulces recién hechos: granos seleccionados, inflados a la perfección y bañados en un caramelo suave que cruje en cada bocado. Ideales para cine en casa, eventos y antojos de media tarde. Sin conservantes, con el sabor clásico de feria que conquista a chicos y grandes.",
+    img: "assets/img/product/pochoclo1.png",
+    disponible: true
+  },
+  2: {
+    nombre: "Algodón de azúcar",
+    precio: 3000,
+    precioOriginal: 4500,
+    descripcion: "Nuestro algodón de azúcar suave y esponjoso, hecho con azúcar refinado. Perfecto para disfrutar",
+    img: "assets/img/product/copo.png",
+    disponible: true
+  },
+  3: {
+    nombre: "Garrapiñadas de maní",
+    precio: 3000,
+    precioOriginal: 4500,
+    descripcion: "Maní tostado envuelto en una capa crujiente de caramelo. Un snack dulce y crocante que no podés dejar de probar.",
+    img: "assets/img/product/garraAlmendraa.png",
+    disponible: true
+  },
+  4: {
+    nombre: "Garrapiñadas de almendras",
+    precio: 4000,
+    precioOriginal: 5500,
+    descripcion: "Almendras enteras recubiertas con caramelo artesanal. Un lujo dulce con toque de elegancia y sabor intenso.",
+    img: "assets/img/product/garraAlmendraa.png",
+    disponible: true
+  },
+  5: {
+    nombre: "Manzana Caramelizada",
+    precio: 4000,
+    precioOriginal: 5500,
+    descripcion: "Una manzana fresca bañada en caramelo dorado y crujiente.",
+    img: "assets/img/product/manzana.png",
+    disponible: true
+  }
+};
 
+// Función para cargar el producto según el ID de la URL
+function cargarDetalleProducto() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  if (!id || !productos[id]) {
+    document.querySelector(".product-name").textContent = "Producto no encontrado";
+    document.querySelector(".product-description p").textContent = "Lo sentimos, el producto que buscas no existe.";
+    document.querySelector(".sale-price").textContent = "-";
+    document.querySelector(".regular-price").textContent = "";
+    document.getElementById("main-product-image").src = "assets/img/product/not-found.png";
+    document.getElementById("main-product-image").setAttribute("data-zoom", "assets/img/product/not-found.png");
+    return;
+  }
+
+  const producto = productos[id];
+
+  // Actualizar datos en la página
+  document.querySelector(".product-name").textContent = producto.nombre;
+  document.querySelector(".sale-price").textContent = `$${producto.precio.toLocaleString()}`;
+  document.querySelector(".regular-price").textContent = `$${producto.precioOriginal.toLocaleString()}`;
+  document.querySelector(".product-description p").textContent = producto.descripcion;
+  document.getElementById("main-product-image").src = producto.img;
+  document.getElementById("main-product-image").setAttribute("data-zoom", producto.img);
+
+  // Actualizar botón de carrito
+  const boton = document.querySelector(".cart-btn");
+  if (boton) {
+    boton.setAttribute("data-id", id);
+    boton.setAttribute("data-name", producto.nombre);
+    boton.setAttribute("data-price", producto.precio);
+    boton.setAttribute("data-img", producto.img);
+  }
+
+  // Actualizar estado de disponibilidad
+  const stock = document.querySelector(".stock-text");
+  if (stock) {
+    stock.textContent = producto.disponible ? "Disponible" : "Agotado";
+    const icono = stock.previousElementSibling;
+    icono.className = producto.disponible ? "bi bi-check-circle-fill" : "bi bi-x-circle-fill text-danger";
+  }
+}
+
+// Cargar el producto cuando la página termine de cargar
+document.addEventListener("DOMContentLoaded", cargarDetalleProducto);
+</script>
 </body>
 
 </html>
