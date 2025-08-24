@@ -232,7 +232,7 @@
                 </div>
 
                 <div class="action-buttons">
-                  <button class="btn primary-action">
+                  <button class="btn primary-action cart-btn" data-id="" data-name="" data-price="" data-img="">
                     <i class="bi bi-bag-plus"></i>
                     Añadir al carrito
                   </button>
@@ -360,6 +360,24 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/carrito.js"></script>
+<!-- Modal Agregado al Carrito -->
+<div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-3 border-0 shadow">
+      <div class="modal-header">
+        <h5 class="modal-title">✅ Producto agregado</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p id="cartModalMessage" class="mb-3"></p>
+        <div class="d-flex justify-content-center gap-3">
+          <button class="btn btn-outline-primary" data-bs-dismiss="modal">Seguir comprando</button>
+          <a href="cart.html" class="btn btn-primary">Ver carrito</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
 const productos = {
   1: {
@@ -443,13 +461,16 @@ function cargarDetalleProducto() {
   if (stock) {
     stock.textContent = producto.disponible ? "Disponible" : "Agotado";
     const icono = stock.previousElementSibling;
-    icono.className = producto.disponible ? "bi bi-check-circle-fill" : "bi bi-x-circle-fill text-danger";
+    icono.className = producto.disponible 
+      ? "bi bi-check-circle-fill text-success" 
+      : "bi bi-x-circle-fill text-danger";
   }
 }
 
 // Cargar el producto cuando la página termine de cargar
 document.addEventListener("DOMContentLoaded", cargarDetalleProducto);
 </script>
+
 </body>
 
 </html>

@@ -167,7 +167,6 @@ function generarLinkWhatsApp() {
     const nombre = document.getElementById("first-name")?.value || "";
     const apellido = document.getElementById("last-name")?.value || "";
     const email = document.getElementById("email")?.value || "";
-    const telefono = document.getElementById("phone")?.value || "";
     const direccion = document.getElementById("address")?.value || "";
     const depto = document.getElementById("apartment")?.value || "";
     const ciudad = document.getElementById("city")?.value || "";
@@ -179,7 +178,6 @@ function generarLinkWhatsApp() {
     let mensaje = "🚨 *NUEVO PEDIDO* 🚨%0A%0A";
     mensaje += `👤 Cliente: ${nombre} ${apellido}%0A`;
     mensaje += `📧 Email: ${email}%0A`;
-    mensaje += `📱 Teléfono: ${telefono}%0A%0A`;
     mensaje += `📍 Dirección: ${direccion} ${depto}, ${ciudad}, CP ${cp}, ${pais}%0A`;
     mensaje += `💳 Pago: ${metodoPago === "cash" ? "Efectivo" : "Transferencia"}%0A%0A`;
 
