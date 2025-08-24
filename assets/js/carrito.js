@@ -251,7 +251,13 @@ window.addEventListener("DOMContentLoaded", () => {
                 cantidad: 1
             };
             agregarAlCarrito(producto);
-            alert(`${producto.nombre} agregado al carrito ✅`);
+            // Mostrar modal en lugar de alert
+            const modalMessage = document.getElementById("cartModalMessage");
+            modalMessage.textContent = `${producto.nombre} agregado al carrito ✅`;
+
+            const cartModal = new bootstrap.Modal(document.getElementById("cartModal"));
+            cartModal.show();
+
         });
     });
 

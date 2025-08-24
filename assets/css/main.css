@@ -12618,3 +12618,40 @@ section,
     justify-content: center;
   }
 }
+
+/* Modal Header */
+#cartModal .modal-header {
+  background-color: #E63946;  /* Rosa de tu paleta */
+  border-bottom: none;
+}
+
+#cartModal .modal-title {
+  color: #fff;  /* Letras blancas */
+  font-weight: 600;
+}
+
+#cartModal .btn-close {
+  filter: invert(1); /* X en blanco */
+}
+
+
+/* Botones */
+#cartModal .btn-primary {
+  background-color: #E63946;
+  border-color: #E63946;
+}
+
+#cartModal .btn-primary:hover {
+  background-color: #E63946;
+  border-color: #E63946;
+}
+
+#cartModal .btn-outline-primary {
+  color: #E63946;
+  border-color: #E63946;
+}
+
+#cartModal .btn-outline-primary:hover {
+  background-color: #E63946;
+  color: #fff;
+}
