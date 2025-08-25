@@ -225,7 +225,6 @@ function generarLinkWhatsApp() {
     let mensaje = "🚨 *NUEVO PEDIDO* 🚨\n\n";
     mensaje += `👤 Cliente: ${nombre} ${apellido}\n`;
     mensaje += `📧 Email: ${email}\n`;
-    mensaje += `📱 Teléfono: ${telefono}\n`;
     mensaje += `📍 Dirección: ${direccion} ${depto}, ${ciudad}, CP ${cp}, ${pais}\n`;
     mensaje += `💳 Pago: ${metodoPago.id === "cash" ? "Efectivo" : "Transferencia"}\n\n`;
 
@@ -240,7 +239,7 @@ function generarLinkWhatsApp() {
 
     // --- Envío ---
     let envio = 0;
-    if (subtotal >= 9000) {
+    if (subtotal >= 8900) {
         mensaje += `\n🚚 Envío: GRATIS (más de $9.000)\n`;
     } else {
         envio = 3000;
