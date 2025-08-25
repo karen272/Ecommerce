@@ -24,17 +24,15 @@ function quitarDelCarrito(id) {
     carrito = carrito.filter(p => p.id !== id);
     actualizarCarrito();
     guardarCarrito();
-    mostrarCarrito();   // cart.html
-    mostrarCheckout();  // verificar.html
+    mostrarCarrito();
+    mostrarCheckout();
 
-    // Mostrar modal con el nombre del producto eliminado
     const removeModalMessage = document.getElementById("removeModalMessage");
     removeModalMessage.textContent = `${item.nombre} fue eliminado del carrito.`;
 
     const removeModal = new bootstrap.Modal(document.getElementById("removeModal"));
     removeModal.show();
 }
-
 
 // =========================
 // ACTUALIZAR CONTADOR
@@ -88,7 +86,7 @@ function mostrarCarrito() {
             <div class="col-lg-6 col-12 mt-3">
               <div class="product-info d-flex align-items-center">
                 <div class="product-image">
-                  <img src="${item.img || "assets/img/product/default.png"}" alt="${item.nombre}" class="img-fluid">
+                  <img src="${item.img || 'assets/img/product/default.png'}" alt="${item.nombre}" class="img-fluid">
                 </div>
                 <div class="product-details">
                   <h6 class="product-title">${item.nombre}</h6>
@@ -116,19 +114,37 @@ function mostrarCarrito() {
         contenedor.appendChild(div);
     });
 
-    actualizarResumen();
+    // Actualizamos resumen
+    actualizarCheckout();
 }
 
 // =========================
-// ACTUALIZAR RESUMEN EN cart.html
+// ACTUALIZAR RESUMEN Y CHECKOUT
 // =========================
-function actualizarResumen() {
+function actualizarCheckout() {
     const subtotal = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+    const shippingCost = subtotal > 8900 ? 0 : 3000;
+    const total = subtotal + shippingCost;
+
+    // Cart.html
     const resumenSubtotal = document.querySelector(".summary-item .summary-value");
     const resumenTotal = document.querySelector(".summary-total .summary-value");
+    const shippingLabel = document.querySelector(".shipping-item .form-check-label");
 
     if (resumenSubtotal) resumenSubtotal.textContent = `$${subtotal.toLocaleString()}`;
-    if (resumenTotal) resumenTotal.textContent = `$${subtotal.toLocaleString()}`;
+    if (shippingLabel) shippingLabel.textContent = shippingCost === 0 ? "Envío estándar Gratis" : `Envío estándar $${shippingCost.toLocaleString()}`;
+    if (resumenTotal) resumenTotal.textContent = `$${total.toLocaleString()}`;
+
+    // Checkout.html
+    const subtotalEl = document.getElementById("checkout-subtotal");
+    const shippingEl = document.querySelector(".order-shipping span:last-child");
+    const totalEl = document.getElementById("checkout-total");
+    const btnPriceEl = document.getElementById("checkout-btn-price");
+
+    if (subtotalEl) subtotalEl.textContent = `$${subtotal.toLocaleString()}`;
+    if (shippingEl) shippingEl.textContent = shippingCost === 0 ? "Gratis" : `$${shippingCost.toLocaleString()}`;
+    if (totalEl) totalEl.textContent = `$${total.toLocaleString()}`;
+    if (btnPriceEl) btnPriceEl.textContent = `$${total.toLocaleString()}`;
 }
 
 // =========================
@@ -139,17 +155,13 @@ function mostrarCheckout() {
     if (!contenedor) return;
 
     contenedor.innerHTML = "";
-    let subtotal = 0;
 
     carrito.forEach(item => {
-        const totalItem = item.precio * item.cantidad;
-        subtotal += totalItem;
-
         const div = document.createElement("div");
         div.classList.add("order-item");
         div.innerHTML = `
           <div class="order-item-image">
-            <img src="${item.img || "assets/img/product/default.png"}" alt="${item.nombre}" class="img-fluid">
+            <img src="${item.img || 'assets/img/product/default.png'}" alt="${item.nombre}" class="img-fluid">
           </div>
           <div class="order-item-details">
             <h4>${item.nombre}</h4>
@@ -163,98 +175,9 @@ function mostrarCheckout() {
     });
 
     document.querySelector(".item-count").textContent = `${carrito.length} artículos`;
-    document.getElementById("checkout-subtotal").textContent = `$${subtotal.toLocaleString()}`;
-    document.getElementById("checkout-total").innerHTML = `<strong>$${subtotal.toLocaleString()}</strong>`;
-    document.getElementById("checkout-btn-price").textContent = `$${subtotal.toLocaleString()}`;
-}
 
-// =========================
-// VALIDAR FORMULARIO
-// =========================
-function validarFormulario() {
-    let mensajes = [];
-
-    const nombre = document.getElementById("first-name")?.value.trim();
-    if (!nombre || nombre.length < 2) mensajes.push("Ingrese un nombre válido.");
-
-    const apellido = document.getElementById("last-name")?.value.trim();
-    if (!apellido || apellido.length < 2) mensajes.push("Ingrese un apellido válido.");
-
-    const email = document.getElementById("email")?.value.trim();
-    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!regexEmail.test(email)) mensajes.push("Ingrese un email válido.");
-
-    const phone = document.getElementById("phone")?.value.trim();
-    const regexPhone = /^[0-9]{7,15}$/;
-    if (!regexPhone.test(phone)) mensajes.push("Ingrese un teléfono válido.");
-
-    const address = document.getElementById("address")?.value.trim();
-    if (!address || address.length < 5) mensajes.push("Ingrese una dirección válida.");
-
-    const city = document.getElementById("city")?.value.trim();
-    if (!city || city.length < 2) mensajes.push("Ingrese una ciudad válida.");
-
-    const zip = document.getElementById("zip")?.value.trim();
-    if (!/^[0-9]{3,10}$/.test(zip)) mensajes.push("Ingrese un código postal válido.");
-
-    const country = document.getElementById("country")?.value.trim();
-    if (!country) mensajes.push("Seleccione un país.");
-
-    if (mensajes.length > 0) {
-        // 👉 Cargar errores en la lista UL del modal
-        const errorList = document.getElementById("validationErrors");
-        errorList.innerHTML = "";
-        mensajes.forEach(msg => {
-            const li = document.createElement("li");
-            li.textContent = msg;
-            errorList.appendChild(li);
-        });
-
-        // 👉 Mostrar modal
-        const validationModal = new bootstrap.Modal(document.getElementById("validationModal"));
-        validationModal.show();
-        return false;
-    }
-    return true;
-}
-
-// =========================
-// GENERAR LINK WHATSAPP
-// =========================
-function generarLinkWhatsApp() {
-    if (carrito.length === 0) return alert("El carrito está vacío");
-
-    if (!validarFormulario()) return; // 🚨 acá validamos antes de enviar
-
-    const nombre = document.getElementById("first-name")?.value || "";
-    const apellido = document.getElementById("last-name")?.value || "";
-    const email = document.getElementById("email")?.value || "";
-    const direccion = document.getElementById("address")?.value || "";
-    const depto = document.getElementById("apartment")?.value || "";
-    const ciudad = document.getElementById("city")?.value || "";
-    const cp = document.getElementById("zip")?.value || "";
-    const pais = document.getElementById("country")?.value || "";
-    const metodoPago = document.querySelector('input[name="payment-method"]:checked')?.id || "";
-
-    let mensaje = "🚨 *NUEVO PEDIDO* 🚨%0A%0A";
-    mensaje += `👤 Cliente: ${nombre} ${apellido}%0A`;
-    mensaje += `📧 Email: ${email}%0A`;
-    mensaje += `📍 Dirección: ${direccion} ${depto}, ${ciudad}, CP ${cp}, ${pais}%0A`;
-    mensaje += `💳 Pago: ${metodoPago === "cash" ? "Efectivo" : "Transferencia"}%0A%0A`;
-
-    mensaje += "🛒 *Detalle del pedido:*%0A";
-
-    let total = 0;
-    carrito.forEach(p => {
-        mensaje += `- ${p.nombre} x${p.cantidad} = $${(p.precio * p.cantidad).toLocaleString()}%0A`;
-        total += p.precio * p.cantidad;
-    });
-
-    mensaje += `%0A💰 *Total: $${total.toLocaleString()}*`;
-
-    const numero = "5492291459739";
-    const link = `https://wa.me/${numero}?text=${mensaje}`;
-    window.open(link, "_blank");
+    // Reutilizamos la función para total, subtotal y envío
+    actualizarCheckout();
 }
 
 // =========================
@@ -269,7 +192,7 @@ document.addEventListener("click", e => {
     if (e.target.closest(".increase")) {
         const id = e.target.closest(".increase").dataset.id;
         const item = carrito.find(p => p.id == id);
-        if (item && item.cantidad) item.cantidad++;
+        if (item) item.cantidad++;
         guardarCarrito();
         mostrarCarrito();
         mostrarCheckout();
@@ -282,7 +205,6 @@ document.addEventListener("click", e => {
             if (item.cantidad > 1) {
                 item.cantidad--;
             } else {
-                // 👇 si está en 1 y le das a "–", elimina el producto
                 quitarDelCarrito(id);
                 return;
             }
