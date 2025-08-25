@@ -233,7 +233,7 @@ function generarLinkWhatsApp() {
     // --- Subtotal ---
     let subtotal = 0;
     carrito.forEach(p => {
-        mensaje += `- ${p.nombre} x${p.cantidad} = $${(p.precio * p.cantidad).toLocaleString()}\n`;
+        mensaje += `- ${p.nombre} x${p.cantidad} = $${(p.precio * p.cantidad).toString()}\n`;
         subtotal += p.precio * p.cantidad;
     });
 
@@ -243,12 +243,12 @@ function generarLinkWhatsApp() {
         mensaje += `\n🚚 Envío: GRATIS (más de $9.000)\n`;
     } else {
         envio = 3000;
-        mensaje += `\n🚚 Envío: $${envio.toLocaleString()}\n`;
+        mensaje += `\n🚚 Envío: $${envio.toString()}\n`;
     }
 
     // --- Total ---
     let total = subtotal + envio;
-    mensaje += `\n💰 *Total: $${total.toLocaleString()}*`;
+    mensaje += `\n💰 *Total: $${total.toString()}*`;
 
     // --- Enviar a WhatsApp ---
     const numero = "5492291459738"; 
