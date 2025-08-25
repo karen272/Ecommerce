@@ -222,30 +222,40 @@ function generarLinkWhatsApp() {
     }
 
     // --- Armamos mensaje ---
-    let mensaje = "🚨 *NUEVO PEDIDO* 🚨%0A%0A";
-    mensaje += `👤 Cliente: ${nombre} ${apellido}%0A`;
-    mensaje += `📧 Email: ${email}%0A`;
-    mensaje += `📱 Teléfono: ${telefono}%0A`;
-    mensaje += `📍 Dirección: ${direccion} ${depto}, ${ciudad}, CP ${cp}, ${pais}%0A`;
-    mensaje += `💳 Pago: ${metodoPago.id === "cash" ? "Efectivo" : "Transferencia"}%0A%0A`;
+    let mensaje = "🚨 *NUEVO PEDIDO* 🚨\n\n";
+    mensaje += `👤 Cliente: ${nombre} ${apellido}\n`;
+    mensaje += `📧 Email: ${email}\n`;
+    mensaje += `📱 Teléfono: ${telefono}\n`;
+    mensaje += `📍 Dirección: ${direccion} ${depto}, ${ciudad}, CP ${cp}, ${pais}\n`;
+    mensaje += `💳 Pago: ${metodoPago.id === "cash" ? "Efectivo" : "Transferencia"}\n\n`;
 
-    mensaje += "🛒 *Detalle del pedido:*%0A";
+    mensaje += "🛒 *Detalle del pedido:*\n";
 
-    let total = 0;
+    // --- Subtotal ---
+    let subtotal = 0;
     carrito.forEach(p => {
-        mensaje += `- ${p.nombre} x${p.cantidad} = $${(p.precio * p.cantidad).toLocaleString()}%0A`;
-        total += p.precio * p.cantidad;
+        mensaje += `- ${p.nombre} x${p.cantidad} = $${(p.precio * p.cantidad).toLocaleString()}\n`;
+        subtotal += p.precio * p.cantidad;
     });
 
-    mensaje += `%0A💰 *Total: $${total.toLocaleString()}*`;
+    // --- Envío ---
+    let envio = 0;
+    if (subtotal >= 9000) {
+        mensaje += `\n🚚 Envío: GRATIS (más de $9.000)\n`;
+    } else {
+        envio = 3000;
+        mensaje += `\n🚚 Envío: $${envio.toLocaleString()}\n`;
+    }
+
+    // --- Total ---
+    let total = subtotal + envio;
+    mensaje += `\n💰 *Total: $${total.toLocaleString()}*`;
 
     // --- Enviar a WhatsApp ---
     const numero = "5492291459738"; 
-    const link = `https://wa.me/${numero}?text=${mensaje}`;
+    const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
     window.open(link, "_blank");
 }
-
-
 
 // =========================
 // EVENTOS DE CARRITO
