@@ -158,12 +158,64 @@ function mostrarCheckout() {
 }
 
 // =========================
+// VALIDAR FORMULARIO
+// =========================
+function validarFormulario() {
+    let mensajes = [];
+
+    const nombre = document.getElementById("first-name")?.value.trim();
+    if (!nombre || nombre.length < 2) mensajes.push("Ingrese un nombre válido.");
+
+    const apellido = document.getElementById("last-name")?.value.trim();
+    if (!apellido || apellido.length < 2) mensajes.push("Ingrese un apellido válido.");
+
+    const email = document.getElementById("email")?.value.trim();
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regexEmail.test(email)) mensajes.push("Ingrese un email válido.");
+
+    const phone = document.getElementById("phone")?.value.trim();
+    const regexPhone = /^[0-9]{7,15}$/;
+    if (!regexPhone.test(phone)) mensajes.push("Ingrese un teléfono válido.");
+
+    const address = document.getElementById("address")?.value.trim();
+    if (!address || address.length < 5) mensajes.push("Ingrese una dirección válida.");
+
+    const city = document.getElementById("city")?.value.trim();
+    if (!city || city.length < 2) mensajes.push("Ingrese una ciudad válida.");
+
+    const zip = document.getElementById("zip")?.value.trim();
+    if (!/^[0-9]{3,10}$/.test(zip)) mensajes.push("Ingrese un código postal válido.");
+
+    const country = document.getElementById("country")?.value.trim();
+    if (!country) mensajes.push("Seleccione un país.");
+
+    if (mensajes.length > 0) {
+        // 👉 Cargar errores en la lista UL del modal
+        const errorList = document.getElementById("validationErrors");
+        errorList.innerHTML = "";
+        mensajes.forEach(msg => {
+            const li = document.createElement("li");
+            li.textContent = msg;
+            errorList.appendChild(li);
+        });
+
+        // 👉 Mostrar modal
+        const validationModal = new bootstrap.Modal(document.getElementById("validationModal"));
+        validationModal.show();
+        return false;
+    }
+    return true;
+}
+
+
+// =========================
 // GENERAR LINK WHATSAPP
 // =========================
 function generarLinkWhatsApp() {
     if (carrito.length === 0) return alert("El carrito está vacío");
 
-    // --- Datos del cliente ---
+    if (!validarFormulario()) return; // 🚨 acá validamos antes de enviar
+
     const nombre = document.getElementById("first-name")?.value || "";
     const apellido = document.getElementById("last-name")?.value || "";
     const email = document.getElementById("email")?.value || "";
@@ -174,7 +226,6 @@ function generarLinkWhatsApp() {
     const pais = document.getElementById("country")?.value || "";
     const metodoPago = document.querySelector('input[name="payment-method"]:checked')?.id || "";
 
-    // --- Armamos mensaje ---
     let mensaje = "🚨 *NUEVO PEDIDO* 🚨%0A%0A";
     mensaje += `👤 Cliente: ${nombre} ${apellido}%0A`;
     mensaje += `📧 Email: ${email}%0A`;
@@ -191,12 +242,10 @@ function generarLinkWhatsApp() {
 
     mensaje += `%0A💰 *Total: $${total.toLocaleString()}*`;
 
-    // --- Enviar a WhatsApp ---
-    const numero = "5492291459739"; // tu número de WhatsApp con código de país
+    const numero = "5492291459739";
     const link = `https://wa.me/${numero}?text=${mensaje}`;
     window.open(link, "_blank");
 }
-
 
 // =========================
 // EVENTOS DE CARRITO
@@ -249,13 +298,12 @@ window.addEventListener("DOMContentLoaded", () => {
                 cantidad: 1
             };
             agregarAlCarrito(producto);
-            // Mostrar modal en lugar de alert
+
             const modalMessage = document.getElementById("cartModalMessage");
             modalMessage.textContent = `${producto.nombre} agregado al carrito ✅`;
 
             const cartModal = new bootstrap.Modal(document.getElementById("cartModal"));
             cartModal.show();
-
         });
     });
 
