@@ -104,7 +104,7 @@ function mostrarCarrito() {
             <div class="col-lg-2 col-12 text-center">
               <div class="quantity-selector">
                 <button class="quantity-btn decrease" data-id="${item.id}"><i class="bi bi-dash"></i></button>
-                <input type="number" class="quantity-input" value="${item.cantidad}" min="1" max="10" data-id="${item.id}" readonly>
+                <input type="number" class="quantity-input" value="${item.cantidad}" min="1" data-id="${item.id}" readonly>
                 <button class="quantity-btn increase" data-id="${item.id}"><i class="bi bi-plus"></i></button>
               </div>
             </div>
@@ -269,7 +269,7 @@ document.addEventListener("click", e => {
     if (e.target.closest(".increase")) {
         const id = e.target.closest(".increase").dataset.id;
         const item = carrito.find(p => p.id == id);
-        if (item && item.cantidad < 10) item.cantidad++;
+        if (item && item.cantidad) item.cantidad++;
         guardarCarrito();
         mostrarCarrito();
         mostrarCheckout();
