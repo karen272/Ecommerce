@@ -179,6 +179,73 @@ function mostrarCheckout() {
     // Reutilizamos la función para total, subtotal y envío
     actualizarCheckout();
 }
+// =========================
+// generar link de whatsapp
+// =========================
+function generarLinkWhatsApp() {
+    if (carrito.length === 0) {
+        alert("El carrito está vacío");
+        return;
+    }
+
+    // --- Datos del cliente ---
+    const nombre = document.getElementById("first-name")?.value.trim();
+    const apellido = document.getElementById("last-name")?.value.trim();
+    const email = document.getElementById("email")?.value.trim();
+    const telefono = document.getElementById("phone")?.value.trim();
+    const direccion = document.getElementById("address")?.value.trim();
+    const depto = document.getElementById("apartment")?.value.trim();
+    const ciudad = document.getElementById("city")?.value.trim();
+    const cp = document.getElementById("zip")?.value.trim();
+    const pais = document.getElementById("country")?.value.trim();
+    const metodoPago = document.querySelector('input[name="payment-method"]:checked');
+
+    // --- Validaciones ---
+    let errores = [];
+    if (!nombre) errores.push("⚠️ Ingresá tu nombre.");
+    if (!apellido) errores.push("⚠️ Ingresá tu apellido.");
+    if (!email) errores.push("⚠️ Ingresá tu email.");
+    if (!telefono) errores.push("⚠️ Ingresá tu número de teléfono.");
+    if (!direccion) errores.push("⚠️ Ingresá tu dirección.");
+    if (!ciudad) errores.push("⚠️ Ingresá tu ciudad.");
+    if (!cp) errores.push("⚠️ Ingresá tu código postal.");
+    if (!pais) errores.push("⚠️ Seleccioná tu país.");
+    if (!metodoPago) errores.push("⚠️ Seleccioná un método de pago.");
+
+    if (errores.length > 0) {
+        const errorList = document.getElementById("validationErrors");
+        errorList.innerHTML = errores.map(err => `<li>${err}</li>`).join("");
+        
+        const validationModal = new bootstrap.Modal(document.getElementById("validationModal"));
+        validationModal.show();
+        return;
+    }
+
+    // --- Armamos mensaje ---
+    let mensaje = "🚨 *NUEVO PEDIDO* 🚨%0A%0A";
+    mensaje += `👤 Cliente: ${nombre} ${apellido}%0A`;
+    mensaje += `📧 Email: ${email}%0A`;
+    mensaje += `📱 Teléfono: ${telefono}%0A`;
+    mensaje += `📍 Dirección: ${direccion} ${depto}, ${ciudad}, CP ${cp}, ${pais}%0A`;
+    mensaje += `💳 Pago: ${metodoPago.id === "cash" ? "Efectivo" : "Transferencia"}%0A%0A`;
+
+    mensaje += "🛒 *Detalle del pedido:*%0A";
+
+    let total = 0;
+    carrito.forEach(p => {
+        mensaje += `- ${p.nombre} x${p.cantidad} = $${(p.precio * p.cantidad).toLocaleString()}%0A`;
+        total += p.precio * p.cantidad;
+    });
+
+    mensaje += `%0A💰 *Total: $${total.toLocaleString()}*`;
+
+    // --- Enviar a WhatsApp ---
+    const numero = "5492291459738"; 
+    const link = `https://wa.me/${numero}?text=${mensaje}`;
+    window.open(link, "_blank");
+}
+
+
 
 // =========================
 // EVENTOS DE CARRITO
