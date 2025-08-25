@@ -18,12 +18,23 @@ function agregarAlCarrito(producto) {
 // QUITAR PRODUCTO
 // =========================
 function quitarDelCarrito(id) {
+    const item = carrito.find(p => p.id === id);
+    if (!item) return;
+
     carrito = carrito.filter(p => p.id !== id);
     actualizarCarrito();
     guardarCarrito();
     mostrarCarrito();   // cart.html
     mostrarCheckout();  // verificar.html
+
+    // Mostrar modal con el nombre del producto eliminado
+    const removeModalMessage = document.getElementById("removeModalMessage");
+    removeModalMessage.textContent = `${item.nombre} fue eliminado del carrito.`;
+
+    const removeModal = new bootstrap.Modal(document.getElementById("removeModal"));
+    removeModal.show();
 }
+
 
 // =========================
 // ACTUALIZAR CONTADOR
@@ -207,7 +218,6 @@ function validarFormulario() {
     return true;
 }
 
-
 // =========================
 // GENERAR LINK WHATSAPP
 // =========================
@@ -268,7 +278,15 @@ document.addEventListener("click", e => {
     if (e.target.closest(".decrease")) {
         const id = e.target.closest(".decrease").dataset.id;
         const item = carrito.find(p => p.id == id);
-        if (item && item.cantidad > 1) item.cantidad--;
+        if (item) {
+            if (item.cantidad > 1) {
+                item.cantidad--;
+            } else {
+                // 👇 si está en 1 y le das a "–", elimina el producto
+                quitarDelCarrito(id);
+                return;
+            }
+        }
         guardarCarrito();
         mostrarCarrito();
         mostrarCheckout();

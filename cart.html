@@ -227,14 +227,14 @@
                   <i class="bi bi-arrow-left"></i> Seguir Comprando
                 </a>
               </div>
-              <div class="payment-methods">
+              <!-- <div class="payment-methods">
                 <p class="payment-title">Medios de Pago</p>
                 <div class="payment-icons">
                   <i class="bi bi-cash" aria-label="Efectivo"></i>
                   <i class="bi bi-credit-card" aria-label="Tarjeta"></i>
                   <i class="bi bi-paypal" aria-label="Mercado Pago"></i>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -342,5 +342,23 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/carrito.js"></script>
+  <!-- Modal Producto Eliminado -->
+<div class="modal fade" id="removeModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-3 border-0 shadow">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title text-white">Producto Eliminado</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p id="removeModalMessage">El producto fue eliminado del carrito.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
