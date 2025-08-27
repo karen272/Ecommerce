@@ -12655,3 +12655,27 @@ section,
   background-color: #E63946;
   color: #fff;
 }
+
+.bg-pink {
+    background-color: #E63946 !important; /* rosa Bootstrap */
+  }
+  .btn-pink {
+    background-color: #E63946;
+    border-color: #E63946;
+    color: #fff;
+  }
+  .btn-pink:hover {
+    background-color: #E63946;
+    border-color: #E63946;
+    color: #fff;
+  }
+  .btn-rojo {
+  background-color: #E63946 !important;
+  border-color: #E63946 !important;
+  color: white !important;
+}
+.btn-rojo:hover {
+  background-color: #c72e3a !important; /* un poco más oscuro al pasar el mouse */
+  border-color: #c72e3a !important;
+}
+

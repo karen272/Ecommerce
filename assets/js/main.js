@@ -958,3 +958,44 @@
   });
 
 })();
+
+/**
+ * ============================
+ * FORMULARIO EVENTOS -> WhatsApp
+ * ============================
+ */
+function enviarEventoWhatsApp() {
+  const nombreInput = document.getElementById("eventName");
+  const mensajeInput = document.getElementById("eventMsg");
+
+  const nombre = nombreInput.value.trim();
+  const mensaje = mensajeInput.value.trim();
+
+  if (!nombre || !mensaje) {
+    // Mostrar el modal en vez del alert
+    document.getElementById("validationMessage").innerText =
+      "Por favor completá tu nombre y el mensaje.";
+    const modal = new bootstrap.Modal(
+      document.getElementById("validationModal")
+    );
+    modal.show();
+    return;
+  }
+
+  // Tu número de WhatsApp en formato internacional sin "+"
+  const telefono = "5492291459738"; // <-- cambiá por tu número real
+
+  // Armamos el texto
+  const texto = `👤 Hola! Soy *${nombre}*.\n\n📌 Quiero consultar por un evento:\n${mensaje}`;
+
+  // Generamos el link de WhatsApp
+  const url = `https://wa.me/${telefono}?text=${encodeURIComponent(texto)}`;
+
+  // Abrimos WhatsApp en nueva pestaña
+  window.open(url, "_blank");
+
+  // 🔹 Borrar los campos después de abrir WhatsApp
+  nombreInput.value = "";
+  mensajeInput.value = "";
+}
+

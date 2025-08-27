@@ -40,7 +40,6 @@
 
           <!-- Logo -->
           <a href="index.html" class="logo d-flex align-items-center">
-            <!-- Uncomment the line below if you also wish to use an image logo -->
             <img src="assets/img/logo.png" alt="">
             <h1 class="sitename">Pochoclos "La 22"</h1>
           </a>
@@ -416,7 +415,45 @@
       </div>
 
     </section><!-- /Best Sellers Section -->
-    <!-- Section Title -->
+
+    <!-- Section eventos -->
+    <section id="best-sellers" class="best-sellers section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Eventos</h2>
+        <p>Los mejores precios para tu evento! Contanos brevemente de qué se trata tu evento y te contactamos.</p>
+      </div><!-- End Section Title -->
+
+      <div class="col-lg-6 col-md-8 mx-auto">
+      <div class="event-item p-4 shadow rounded">
+
+        <!-- Formulario simple -->
+        <div class="event-form">
+          <div class="mb-3">
+            <label for="eventName" class="form-label">Tu nombre</label>
+            <input type="text" id="eventName" class="form-control" placeholder="Ej: Karen">
+          </div>
+
+          <div class="mb-3">
+            <label for="eventMsg" class="form-label">Sobre tu evento</label>
+            <textarea id="eventMsg" class="form-control" rows="3" placeholder="Ej: Cumpleaños de 15, 40 invitados"></textarea>
+          </div>
+
+          <button 
+            class="btn btn-rojo w-100" 
+            onclick="enviarEventoWhatsApp()">
+            Consultar por WhatsApp
+          </button>
+
+        </div>
+      </div>
+    </div>
+    <!-- End Sección Eventos -->
+
+    </section><!-- /Best Sellers Section -->
+
+    <!-- Section Encontranos en -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Encontranos en</h2>
         <p>Calle 21 esquina 22 </p>
@@ -424,7 +461,7 @@
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3132.361799696248!2d-57.83911693724126!3d-38.271105241265474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95851062d159d1c9%3A0x9511f33fbd2a3f48!2sC.%2022%20%26%20C.%2021%2C%20Miramar%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1669685770329!5m2!1ses-419!2sar" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
         </section>
-      </div><!-- End Section Title -->
+      </div><!-- End Section encontranos en -->
 
   </main>
 
@@ -539,6 +576,27 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="validationModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-3 border-0 shadow">
+      <!-- Header con fondo rosa -->
+      <div class="modal-header bg-pink text-white">
+        <h5 class="modal-title text-white">⚠️ Atención</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p id="validationMessage" class="mb-3"></p>
+        <div class="d-flex justify-content-center">
+          <!-- Botón rosa -->
+          <button class="btn btn-pink" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 
 </body>

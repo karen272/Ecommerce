@@ -254,6 +254,12 @@ function generarLinkWhatsApp() {
     const numero = "5492291459738"; 
     const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
     window.open(link, "_blank");
+    localStorage.removeItem("carrito");
+    carrito = [];
+    actualizarCarrito();
+    mostrarCarrito();
+    mostrarCheckout();
+
 }
 
 // =========================
