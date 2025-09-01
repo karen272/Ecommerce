@@ -222,13 +222,13 @@ function generarLinkWhatsApp() {
     }
 
     // --- Armamos mensaje ---
-    let mensaje = "🚨 *NUEVO PEDIDO* 🚨\n\n";
-    mensaje += `👤 Cliente: ${nombre} ${apellido}\n`;
-    mensaje += `📧 Email: ${email}\n`;
-    mensaje += `📍 Dirección: ${direccion} ${depto}, ${ciudad}, CP ${cp}, ${pais}\n`;
-    mensaje += `💳 Pago: ${metodoPago.id === "cash" ? "Efectivo" : "Transferencia"}\n\n`;
+    let mensaje = " *NUEVO PEDIDO!*  \n\n";
+    mensaje += `• Cliente: ${nombre} ${apellido}\n`;
+    mensaje += `• Email: ${email}\n`;
+    mensaje += `• Dirección: ${direccion} ${depto}, ${ciudad}, CP ${cp}, ${pais}\n`;
+    mensaje += `• Pago: ${metodoPago.id === "cash" ? "Efectivo" : "Transferencia"}\n\n`;
 
-    mensaje += "🛒 *Detalle del pedido:*\n";
+    mensaje += "*Detalle del pedido:*\n";
 
     // --- Subtotal ---
     let subtotal = 0;
@@ -240,15 +240,15 @@ function generarLinkWhatsApp() {
     // --- Envío ---
     let envio = 0;
     if (subtotal >= 8900) {
-        mensaje += `\n🚚 Envío: GRATIS (más de $9.000)\n`;
+        mensaje += `\n→Envío: GRATIS (más de $9.000)\n`;
     } else {
         envio = 3000;
-        mensaje += `\n🚚 Envío: $${envio.toString()}\n`;
+        mensaje += `\n→Envío: $${envio.toString()}\n`;
     }
 
     // --- Total ---
     let total = subtotal + envio;
-    mensaje += `\n💰 *Total: $${total.toString()}*`;
+    mensaje += `\n*Total: $${total.toString()}*`;
 
     // --- Enviar a WhatsApp ---
     const numero = "5492291459738"; 
