@@ -626,17 +626,119 @@
     </script>
 
     <!-- Section Encontranos en -->
-    <div class="container section-title" data-aos="fade-up">
-      <h2>Encontranos en</h2>
-      <p>Calle 21 esquina 22 </p>
-      <section id="best-sellers" class="best-sellers section">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3132.361799696248!2d-57.83911693724126!3d-38.271105241265474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95851062d159d1c9%3A0x9511f33fbd2a3f48!2sC.%2022%20%26%20C.%2021%2C%20Miramar%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1669685770329!5m2!1ses-419!2sar"
-          width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </section>
-    </div><!-- End Section encontranos en -->
+    <section id="encontranos" class="section py-5" style="background: #f9f4e6; /* beige claro */">
+      <div class="container">
+
+        <!-- Título con estilo -->
+        <div class="text-center mb-5" data-aos="fade-up">
+          <h2 class="display-5 fw-bold text-dark mb-3">
+            📍 Encontrános en
+          </h2>
+          <p class="lead text-muted mb-0">
+            ¡Vení a disfrutar del mejor sabor crujiente en Miramar!
+          </p>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="row justify-content-center align-items-center g-5">
+
+          <!-- Información de contacto -->
+          <div class="col-lg-5 col-md-8 order-lg-1 order-md-2">
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white text-center">
+              <!-- Icono decorativo -->
+              <div class="mb-4">
+                <div class="d-inline-block p-3 rounded-circle bg-rojo text-white">
+                  <i class="bi bi-geo-alt-fill fs-1"></i>
+                </div>
+              </div>
+
+              <!-- Título centrado -->
+              <h4 class="fw-bold mb-4">Dirección</h4>
+
+              <!-- Lista centrada -->
+              <ul class="list-unstyled mb-4 mx-auto" style="max-width: 300px;">
+                <li class="mb-3">
+                  <i class="bi bi-geo-alt-fill text-rojo me-2"></i>
+                  <div>
+                    <strong>Calle 21 esquina 22</strong><br>
+                    <small class="text-muted">Miramar, Provincia de Buenos Aires</small>
+                  </div>
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-telephone-fill text-rojo me-2"></i>
+                  <div>
+                    <strong>+54 2291 45-9738</strong>
+                  </div>
+                </li>
+                <li class="mb-3">
+                  <i class="bi bi-clock-fill text-rojo me-2"></i>
+                  <div>
+                    <strong>Horario:</strong><br>
+                    <small>Lunes a Domingo: 10:00 - 22:00</small>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Mapa -->
+          <div class="col-lg-6 col-md-10 order-lg-2 order-md-1">
+            <div class="rounded-4 overflow-hidden shadow-lg border-0">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3132.361799696248!2d-57.83911693724126!3d-38.271105241265474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95851062d159d1c9%3A0x9511f33fbd2a3f48!2sC.%2022%20%26%20C.%2021%2C%20Miramar%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1669685770329!5m2!1ses-419!2sar"
+                width="100%" height="400" style="border: none; border-radius: 1rem;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- /Section Encontranos en -->
+    <!-- Estilos adicionales -->
+    <style>
+      .bg-rojo {
+        background-color: #e63946 !important;
+      }
+
+      .text-rojo {
+        color: #e63946 !important;
+      }
+
+      @keyframes float {
+
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+
+      .card {
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-rojo {
+        background: linear-gradient(135deg, #e63946, #d62839);
+        border: none;
+        color: white;
+        font-weight: bold;
+      }
+
+      .btn-rojo:hover {
+        background: linear-gradient(135deg, #d62839, #c1121f);
+        transform: translateY(-2px);
+      }
+    </style>
 
   </main>
 
