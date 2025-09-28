@@ -191,25 +191,15 @@ function generarLinkWhatsApp() {
     // --- Datos del cliente ---
     const nombre = document.getElementById("first-name")?.value.trim();
     const apellido = document.getElementById("last-name")?.value.trim();
-    const email = document.getElementById("email")?.value.trim();
-    const telefono = document.getElementById("phone")?.value.trim();
     const direccion = document.getElementById("address")?.value.trim();
     const depto = document.getElementById("apartment")?.value.trim();
-    const ciudad = document.getElementById("city")?.value.trim();
-    const cp = document.getElementById("zip")?.value.trim();
-    const pais = document.getElementById("country")?.value.trim();
     const metodoPago = document.querySelector('input[name="payment-method"]:checked');
 
     // --- Validaciones ---
     let errores = [];
     if (!nombre) errores.push("⚠️ Ingresá tu nombre.");
     if (!apellido) errores.push("⚠️ Ingresá tu apellido.");
-    if (!email) errores.push("⚠️ Ingresá tu email.");
-    if (!telefono) errores.push("⚠️ Ingresá tu número de teléfono.");
     if (!direccion) errores.push("⚠️ Ingresá tu dirección.");
-    if (!ciudad) errores.push("⚠️ Ingresá tu ciudad.");
-    if (!cp) errores.push("⚠️ Ingresá tu código postal.");
-    if (!pais) errores.push("⚠️ Seleccioná tu país.");
     if (!metodoPago) errores.push("⚠️ Seleccioná un método de pago.");
 
     if (errores.length > 0) {
@@ -224,8 +214,7 @@ function generarLinkWhatsApp() {
     // --- Armamos mensaje ---
     let mensaje = " *NUEVO PEDIDO!*  \n\n";
     mensaje += `• Cliente: ${nombre} ${apellido}\n`;
-    mensaje += `• Email: ${email}\n`;
-    mensaje += `• Dirección: ${direccion} ${depto}, ${ciudad}, CP ${cp}, ${pais}\n`;
+    mensaje += `• Dirección: ${direccion} ${depto}\n`;
     mensaje += `• Pago: ${metodoPago.id === "cash" ? "Efectivo" : "Transferencia"}\n\n`;
 
     mensaje += "*Detalle del pedido:*\n";
