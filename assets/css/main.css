@@ -12939,6 +12939,301 @@ section,
   color: #dc3545;
 }
 
+/* Sorteo — preview en carrito y checkout */
+.sorteo-preview {
+  margin-top: 1rem;
+  padding: 0.875rem 1rem;
+  background: linear-gradient(135deg, rgba(230, 57, 70, 0.08), rgba(255, 193, 7, 0.12));
+  border: 1px dashed rgba(230, 57, 70, 0.35);
+  border-radius: 10px;
+}
+
+.sorteo-preview-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.sorteo-preview-icon {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e63946;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1.125rem;
+}
+
+.sorteo-preview-text strong {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--heading-color);
+  margin-bottom: 0.2rem;
+}
+
+.sorteo-preview-text p {
+  font-size: 0.8125rem;
+  color: var(--heading-color);
+}
+
+.sorteo-preview-text small {
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.cart .sorteo-preview {
+  margin-bottom: 0.5rem;
+}
+
+/*--------------------------------------------------------------
+# Sorteo promo — inicio
+--------------------------------------------------------------*/
+.sorteo-promo {
+  padding: 2.5rem 0 1rem;
+  background: linear-gradient(180deg, #fff9f0 0%, #ffffff 100%);
+}
+
+.sorteo-promo-card {
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(135deg, #fffbf5 0%, #fdf8f0 45%, #fff5eb 100%);
+  border: 2px solid #f0e0cc;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(230, 57, 70, 0.1);
+}
+
+.sorteo-promo-logo-col {
+  text-align: center;
+}
+
+.sorteo-promo-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 50%;
+  border: 3px solid #e63946;
+  box-shadow: 0 8px 24px rgba(230, 57, 70, 0.15);
+}
+
+.sorteo-promo-logo {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+}
+
+.sorteo-promo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  margin-bottom: 0.75rem;
+  background: #e63946;
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-radius: 50px;
+}
+
+.sorteo-promo-title {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 800;
+  color: var(--heading-color);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.sorteo-promo-prize {
+  font-size: 1rem;
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+  margin-bottom: 1rem;
+}
+
+.sorteo-promo-rules {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.sorteo-promo-rules li {
+  position: relative;
+  padding: 0.4rem 0 0.4rem 1.5rem;
+  font-size: 0.9375rem;
+  color: var(--heading-color);
+}
+
+.sorteo-promo-rules li::before {
+  content: "🍿";
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  font-size: 0.875rem;
+}
+
+.sorteo-promo-rules li span {
+  font-weight: 600;
+  color: #e63946;
+}
+
+.sorteo-promo-note {
+  font-size: 0.8125rem;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+  margin-bottom: 1rem;
+}
+
+.sorteo-promo-date {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  margin-bottom: 1rem;
+  background: rgba(230, 57, 70, 0.08);
+  border-left: 4px solid #e63946;
+  border-radius: 0 10px 10px 0;
+}
+
+.sorteo-promo-date > i {
+  font-size: 1.5rem;
+  color: #e63946;
+  flex-shrink: 0;
+}
+
+.sorteo-promo-date strong {
+  display: block;
+  color: var(--heading-color);
+  margin-bottom: 0.15rem;
+}
+
+.sorteo-promo-date span {
+  font-size: 0.875rem;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+}
+
+.sorteo-promo-ig-wrap {
+  text-align: center;
+}
+
+.btn-sorteo-ig,
+.btn-sorteo-ig:hover,
+.btn-sorteo-ig:focus,
+.btn-sorteo-ig:active,
+.btn-sorteo-ig:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: linear-gradient(135deg, #e63946, #c1121f) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-sorteo-ig i {
+  color: #ffffff !important;
+}
+
+.btn-sorteo-ig:hover {
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.35);
+}
+
+.sorteo-promo-album-wrap {
+  display: inline-block;
+  width: 100%;
+  max-width: 360px;
+  padding: 0.65rem;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  border: 2px solid #f0e0cc;
+  overflow: hidden;
+}
+
+.sorteo-promo-album-img {
+  display: block;
+  width: 100%;
+  max-height: 520px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+@media (max-width: 991.98px) {
+  .sorteo-promo-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .sorteo-promo-logo-col {
+    text-align: center;
+    margin-bottom: 0.25rem;
+  }
+
+  .sorteo-promo-logo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .sorteo-promo-ig-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .sorteo-promo-album-wrap {
+    max-width: min(92vw, 400px);
+    width: 100%;
+    margin: 0.5rem auto 0;
+  }
+
+  .sorteo-promo-album-img {
+    max-height: 520px;
+  }
+}
+
+@media (min-width: 992px) {
+  .sorteo-promo-logo-col {
+    text-align: left;
+  }
+
+  .sorteo-promo-brand {
+    padding: 1.25rem;
+  }
+
+  .sorteo-promo-logo {
+    width: 200px;
+    height: 200px;
+  }
+
+  .sorteo-promo-ig-wrap {
+    text-align: left;
+  }
+
+  .sorteo-promo-album-wrap {
+    max-width: 380px;
+  }
+
+  .sorteo-promo-album-img {
+    max-height: 600px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .sorteo-promo {
+    padding: 1.5rem 0 0.5rem;
+  }
+}
+
 .cart-toast-body {
   flex: 1;
   min-width: 0;

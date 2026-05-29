@@ -201,6 +201,10 @@ function actualizarCheckout() {
   if (shippingEl) shippingEl.textContent = "Gratis";
   if (totalEl) totalEl.textContent = `$${total.toLocaleString()}`;
   if (btnPriceEl) btnPriceEl.textContent = `$${total.toLocaleString()}`;
+
+  if (typeof actualizarPreviewSorteo === "function") {
+    actualizarPreviewSorteo(total);
+  }
 }
 // =========================
 // MOSTRAR CHECKOUT EN verificar.html
@@ -287,7 +291,27 @@ function generarLinkWhatsApp() {
 
   // --- Total ---
   let total = subtotal + envio;
-  mensaje += `\n*Total: $${total.toString()}*`;
+  mensaje += `\n*Total: $${total.toLocaleString("es-AR")}*`;
+
+  // --- Sorteo según monto ---
+  const chances = typeof cantidadChancesSorteo === "function" ? cantidadChancesSorteo(total) : 0;
+  if (chances > 0 && typeof generarNumerosSorteo === "function") {
+    const { numeros, error } = generarNumerosSorteo(chances);
+    if (error) {
+      const validationMessage = document.getElementById("validationMessage");
+      const validationModal = document.getElementById("validationModal");
+      if (validationMessage && validationModal) {
+        validationMessage.textContent = error;
+        bootstrap.Modal.getOrCreateInstance(validationModal).show();
+      } else {
+        alert(error);
+      }
+      return;
+    }
+    if (typeof textoSorteoWhatsApp === "function") {
+      mensaje += textoSorteoWhatsApp(total, numeros);
+    }
+  }
 
   // --- Enviar a WhatsApp ---
   const numero = "5492291459738";
