@@ -147,46 +147,7 @@
         <div class="row">
           <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
             <div class="cart-items">
-              <div class="cart-header d-none d-lg-block">
-                <div class="row align-items-center">
-                  <div class="col-lg-6">
-                    <h5>Producto</h5>
-                  </div>
-                  <div class="col-lg-2 text-center">
-                    <h5>Precio</h5>
-                  </div>
-                  <div class="col-lg-2 text-center">
-                    <h5>Cantidad</h5>
-                  </div>
-                  <div class="col-lg-2 text-center">
-                    <h5>Total</h5>
-                  </div>
-                </div>
-              </div>
-
-              
-
-              <!-- Acciones del carrito -->
-              <div class="cart-actions">
-                <div class="row">
-                  <div class="col-lg-6 mb-3 mb-lg-0">
-                    <div class="coupon-form">
-                      <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Código de descuento">
-                        <button class="btn btn-outline-accent" type="button">Aplicar</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 text-md-end">
-                    <button class="btn btn-outline-heading me-2">
-                      <i class="bi bi-arrow-clockwise"></i> Actualizar
-                    </button>
-                    <button class="btn btn-outline-remove">
-                      <i class="bi bi-trash"></i> Vaciar
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <div class="cart-list"></div>
             </div>
           </div>
 
@@ -204,7 +165,7 @@
                   <div class="form-check text-end">
                     <input class="form-check-input" type="radio" name="shipping" id="standard" checked>
                     <label class="form-check-label" for="standard">
-                      Envío estándar - Gratis
+                      Envío gratis
                     </label>
                   </div>
                 </div>
@@ -217,6 +178,7 @@
                 <span class="summary-label">Total</span>
                 <span class="summary-value">$12.000</span>
               </div>
+              <div id="sorteo-preview" class="sorteo-preview d-none" aria-live="polite"></div>
               <div class="checkout-button">
                 <a href="checkout.html" class="btn btn-accent w-100">
                   Finalizar Compra <i class="bi bi-arrow-right"></i>
@@ -249,7 +211,8 @@
         <div class="row gy-4">
           <div class="col-lg-4 col-md-6">
             <div class="footer-widget footer-about">
-              <a href="index.html" class="logo">
+              <a href="index.html" class="logo footer-brand">
+                <img src="assets/img/logo.png" alt="Pochoclos La 22" class="footer-logo-round">
                 <span class="sitename">Pochoclos "La 22"</span>
               </a>
               <p>Los mejores pochoclos de Miramar. Te los llevamos a tu casa.</p>
@@ -341,24 +304,9 @@
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/sorteo.js"></script>
   <script src="assets/js/carrito.js"></script>
-  <!-- Modal Producto Eliminado -->
-<div class="modal fade" id="removeModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content rounded-3 border-0 shadow">
-      <div class="modal-header bg-danger text-white">
-        <h5 class="modal-title text-white">Producto Eliminado</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-      </div>
-      <div class="modal-body">
-        <p id="removeModalMessage">El producto fue eliminado del carrito.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
+  <div id="cart-toast-container" class="cart-toast-container" aria-live="polite" aria-atomic="true"></div>
 
 </body>
 </html>

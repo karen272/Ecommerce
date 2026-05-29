@@ -26,12 +26,54 @@ function quitarDelCarrito(id) {
   guardarCarrito();
   mostrarCarrito();
   mostrarCheckout();
+  mostrarNotificacionCarrito({ nombre: item.nombre }, "remove");
+}
 
-  const removeModalMessage = document.getElementById("removeModalMessage");
-  removeModalMessage.textContent = `${item.nombre} fue eliminado del carrito.`;
+// =========================
+// NOTIFICACIÓN AL AGREGAR
+// =========================
+function mostrarNotificacionCarrito(producto, tipo = "add") {
+  let container = document.getElementById("cart-toast-container");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "cart-toast-container";
+    container.className = "cart-toast-container";
+    container.setAttribute("aria-live", "polite");
+    container.setAttribute("aria-atomic", "true");
+    document.body.appendChild(container);
+  }
 
-  const removeModal = new bootstrap.Modal(document.getElementById("removeModal"));
-  removeModal.show();
+  container.querySelectorAll(".cart-toast").forEach(t => t.remove());
+
+  const esEliminar = tipo === "remove";
+  const toast = document.createElement("div");
+  toast.className = `cart-toast${esEliminar ? " cart-toast--remove" : ""}`;
+  toast.setAttribute("role", "status");
+  toast.innerHTML = `
+    <div class="cart-toast-icon"><i class="bi bi-${esEliminar ? "trash" : "check-circle"}-fill" aria-hidden="true"></i></div>
+    <div class="cart-toast-body">
+      <strong>${esEliminar ? "Producto eliminado" : "¡Agregado al carrito!"}</strong>
+      <span>${producto.nombre}</span>
+    </div>
+    ${esEliminar ? "" : '<a href="cart.html" class="cart-toast-link">Ver carrito</a>'}
+    <button type="button" class="cart-toast-close" aria-label="Cerrar"><i class="bi bi-x-lg"></i></button>
+  `;
+
+  container.appendChild(toast);
+  requestAnimationFrame(() => toast.classList.add("show"));
+
+  const cerrar = () => {
+    toast.classList.remove("show");
+    toast.classList.add("hide");
+    setTimeout(() => toast.remove(), 300);
+  };
+
+  toast.querySelector(".cart-toast-close").addEventListener("click", cerrar);
+  setTimeout(cerrar, esEliminar ? 3000 : 4500);
+}
+
+function mostrarNotificacionAgregado(producto) {
+  mostrarNotificacionCarrito(producto, "add");
 }
 
 // =========================
@@ -63,58 +105,72 @@ function cargarCarrito() {
 // MOSTRAR CARRITO EN cart.html
 // =========================
 function mostrarCarrito() {
-  const contenedor = document.querySelector(".cart-items");
+  const contenedor = document.querySelector(".cart-list");
   if (!contenedor) return;
 
-  contenedor.innerHTML = `
-      <div class="cart-header d-none d-lg-block">
-        <div class="row align-items-center">
-          <div class="col-lg-6"><h5>Producto</h5></div>
-          <div class="col-lg-2 text-center"><h5>Precio</h5></div>
-          <div class="col-lg-2 text-center"><h5>Cantidad</h5></div>
-          <div class="col-lg-2 text-center"><h5>Total</h5></div>
-        </div>
+  if (carrito.length === 0) {
+    contenedor.innerHTML = `
+      <div class="cart-empty text-center py-5">
+        <i class="bi bi-cart-x display-4 text-muted mb-3 d-block"></i>
+        <p class="mb-3">Tu carrito está vacío</p>
+        <a href="index.html" class="btn btn-accent">Ver productos</a>
       </div>
     `;
+    actualizarCheckout();
+    return;
+  }
+
+  contenedor.innerHTML = `
+    <div class="cart-header d-none d-lg-block">
+      <div class="row align-items-center g-0">
+        <div class="col-lg-5"><h5>Producto</h5></div>
+        <div class="col-lg-2 text-center"><h5>Precio</h5></div>
+        <div class="col-lg-3 text-center"><h5>Cantidad</h5></div>
+        <div class="col-lg-2 text-center"><h5>Total</h5></div>
+      </div>
+    </div>
+  `;
 
   carrito.forEach(item => {
     const totalItem = item.precio * item.cantidad;
     const div = document.createElement("div");
     div.classList.add("cart-item");
     div.innerHTML = `
-          <div class="row align-items-center">
-            <div class="col-lg-6 col-12 mt-3">
-              <div class="product-info d-flex align-items-center">
-                <div class="product-image">
-                  <img src="${item.img || 'assets/img/product/default.png'}" alt="${item.nombre}" class="img-fluid">
-                </div>
-                <div class="product-details">
-                  <h6 class="product-title">${item.nombre}</h6>
-                  <button class="remove-item btn btn-link text-danger p-0" data-id="${item.id}">
-                    <i class="bi bi-trash"></i> Eliminar
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-2 col-12 text-center">
-              <div class="price-tag"><span>$${item.precio.toLocaleString()}</span></div>
-            </div>
-            <div class="col-lg-2 col-12 text-center">
-              <div class="quantity-selector">
-                <button class="quantity-btn decrease" data-id="${item.id}"><i class="bi bi-dash"></i></button>
-                <input type="number" class="quantity-input" value="${item.cantidad}" min="1" data-id="${item.id}" readonly>
-                <button class="quantity-btn increase" data-id="${item.id}"><i class="bi bi-plus"></i></button>
-              </div>
-            </div>
-            <div class="col-lg-2 col-12 text-center">
-              <div class="item-total"><span>$${totalItem.toLocaleString()}</span></div>
-            </div>
+      <div class="cart-item-card">
+        <button type="button" class="remove-item" data-id="${item.id}" aria-label="Eliminar ${item.nombre}">
+          <i class="bi bi-trash" aria-hidden="true"></i>
+          <span class="remove-item-label">Eliminar</span>
+        </button>
+        <div class="cart-item-product">
+          <div class="product-image">
+            <img src="${item.img || 'assets/img/product/default.png'}" alt="${item.nombre}" class="img-fluid">
           </div>
-        `;
+          <div class="product-details">
+            <h6 class="product-title">${item.nombre}</h6>
+            <p class="cart-item-unit-price d-lg-none">$${item.precio.toLocaleString()} <small>c/u</small></p>
+          </div>
+        </div>
+        <div class="cart-item-price-col">
+          <span class="cart-field-label">Precio</span>
+          <div class="price-tag"><span>$${item.precio.toLocaleString()}</span></div>
+        </div>
+        <div class="cart-item-qty-col">
+          <span class="cart-field-label">Cantidad</span>
+          <div class="quantity-selector">
+            <button type="button" class="quantity-btn decrease" data-id="${item.id}" aria-label="Menos cantidad"><i class="bi bi-dash"></i></button>
+            <input type="number" class="quantity-input" value="${item.cantidad}" min="1" data-id="${item.id}" readonly aria-label="Cantidad">
+            <button type="button" class="quantity-btn increase" data-id="${item.id}" aria-label="Más cantidad"><i class="bi bi-plus"></i></button>
+          </div>
+        </div>
+        <div class="cart-item-total-col">
+          <span class="cart-field-label">Total</span>
+          <div class="item-total"><span>$${totalItem.toLocaleString()}</span></div>
+        </div>
+      </div>
+    `;
     contenedor.appendChild(div);
   });
 
-  // Actualizamos resumen
   actualizarCheckout();
 }
 
@@ -132,7 +188,7 @@ function actualizarCheckout() {
   const shippingLabel = document.querySelector(".shipping-item .form-check-label");
 
   if (resumenSubtotal) resumenSubtotal.textContent = `$${subtotal.toLocaleString()}`;
-  if (shippingLabel) shippingLabel.textContent = "Envío estándar Gratis";
+  if (shippingLabel) shippingLabel.textContent = "Envío gratis";
   if (resumenTotal) resumenTotal.textContent = `$${total.toLocaleString()}`;
 
   // Checkout.html
@@ -145,6 +201,10 @@ function actualizarCheckout() {
   if (shippingEl) shippingEl.textContent = "Gratis";
   if (totalEl) totalEl.textContent = `$${total.toLocaleString()}`;
   if (btnPriceEl) btnPriceEl.textContent = `$${total.toLocaleString()}`;
+
+  if (typeof actualizarPreviewSorteo === "function") {
+    actualizarPreviewSorteo(total);
+  }
 }
 // =========================
 // MOSTRAR CHECKOUT EN verificar.html
@@ -231,7 +291,27 @@ function generarLinkWhatsApp() {
 
   // --- Total ---
   let total = subtotal + envio;
-  mensaje += `\n*Total: $${total.toString()}*`;
+  mensaje += `\n*Total: $${total.toLocaleString("es-AR")}*`;
+
+  // --- Sorteo según monto ---
+  const chances = typeof cantidadChancesSorteo === "function" ? cantidadChancesSorteo(total) : 0;
+  if (chances > 0 && typeof generarNumerosSorteo === "function") {
+    const { numeros, error } = generarNumerosSorteo(chances);
+    if (error) {
+      const validationMessage = document.getElementById("validationMessage");
+      const validationModal = document.getElementById("validationModal");
+      if (validationMessage && validationModal) {
+        validationMessage.textContent = error;
+        bootstrap.Modal.getOrCreateInstance(validationModal).show();
+      } else {
+        alert(error);
+      }
+      return;
+    }
+    if (typeof textoSorteoWhatsApp === "function") {
+      mensaje += textoSorteoWhatsApp(total, numeros);
+    }
+  }
 
   // --- Enviar a WhatsApp ---
   const numero = "5492291459738";
@@ -290,25 +370,38 @@ window.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll('.cart-btn').forEach((btn, index) => {
     btn.addEventListener('click', () => {
+      if (btn.disabled) return;
+
       const item = btn.closest('.product-item');
+      const qtyInput = btn.closest('.purchase-section')?.querySelector('.quantity-input');
+      const cantidad = qtyInput ? Math.max(1, parseInt(qtyInput.value, 10) || 1) : 1;
+
+      let nombre = btn.dataset.name;
+      if (!nombre && item) {
+        nombre = item.querySelector('.product-name a')?.textContent.trim()
+          || item.querySelector('.product-name')?.textContent.trim();
+      }
+      if (!nombre) {
+        nombre = document.querySelector('.product-details .product-name')?.textContent.trim();
+      }
+
+      let precio = parseFloat(btn.dataset.price);
+      if (!precio && item?.querySelector('.product-price')) {
+        precio = parseFloat(
+          item.querySelector('.product-price').textContent.replace(/[^\d]/g, '')
+        );
+      }
+
       const producto = {
-        id: btn.dataset.id || index + 1,
-        nombre: btn.dataset.name
-          || (item.querySelector('.product-name a')
-            ? item.querySelector('.product-name a').textContent.trim()
-            : item.querySelector('.product-name').textContent.trim()),
-        precio: parseFloat(btn.dataset.price
-          || item.querySelector('.product-price').textContent.replace('$', '').replace('.', '').trim()),
-        img: btn.dataset.img || item.querySelector('img').src,
-        cantidad: 1
+        id: btn.dataset.id || String(index + 1),
+        nombre: nombre || 'Producto',
+        precio: precio || 0,
+        img: btn.dataset.img || item?.querySelector('img')?.src || '',
+        cantidad
       };
+
       agregarAlCarrito(producto);
-
-      const modalMessage = document.getElementById("cartModalMessage");
-      modalMessage.textContent = `${producto.nombre} agregado al carrito ✅`;
-
-      const cartModal = new bootstrap.Modal(document.getElementById("cartModal"));
-      cartModal.show();
+      mostrarNotificacionAgregado(producto);
     });
   });
 

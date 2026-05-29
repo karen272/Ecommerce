@@ -212,39 +212,34 @@
                   <span class="stock-text">Disponible</span>
                 </div>
               </div>
-              <!-- Purchase Options -->
-              <!-- <div class="purchase-section">
+              <div class="purchase-section">
                 <div class="quantity-control">
-                  <label class="control-label">Cantidad:</label>
+                  <label class="control-label" for="product-qty">Cantidad:</label>
                   <div class="quantity-input-group">
-                    <div class="quantity-selector">
-                      <button class="quantity-btn decrease" type="button">
+                    <div class="quantity-selector product-qty-selector">
+                      <button class="quantity-btn product-qty-decrease" type="button" aria-label="Menos cantidad">
                         <i class="bi bi-dash"></i>
                       </button>
-                      <input type="number" class="quantity-input" value="1" min="1" max="18">
-                      <button class="quantity-btn increase" type="button">
+                      <input type="number" id="product-qty" class="quantity-input" value="1" min="1" max="99">
+                      <button class="quantity-btn product-qty-increase" type="button" aria-label="Más cantidad">
                         <i class="bi bi-plus"></i>
                       </button>
                     </div>
                   </div>
-                </div> -->
-
-                <!-- <div class="action-buttons">
-                  <button class="btn primary-action cart-btn" data-id="" data-name="" data-price="" data-img="">
+                </div>
+                <div class="action-buttons">
+                  <button type="button" class="btn primary-action cart-btn" data-id="" data-name="" data-price="" data-img="">
                     <i class="bi bi-bag-plus"></i>
-                    Añadir al carrito
+                    Agregar al carrito
                   </button>
-                  <button class="btn icon-action" title="Add to Wishlist">
-                    <i class="bi bi-heart"></i>
-                  </button>
-                </div> -->
+                </div>
               </div>
 
               <!-- Benefits List -->
               <div class="benefits-list">
                 <div class="benefit-item">
                   <i class="bi bi-truck"></i>
-                  <span>Delivery gratis a partir de $9.000</span>
+                  <span>Envío gratis</span>
                 </div>
                 <div class="benefit-item">
                   <i class="bi bi-shield-check"></i>
@@ -265,7 +260,8 @@
         <div class="row gy-4">
           <div class="col-lg-4 col-md-6">
             <div class="footer-widget footer-about">
-              <a href="index.html" class="logo">
+              <a href="index.html" class="logo footer-brand">
+                <img src="assets/img/logo.png" alt="Pochoclos La 22" class="footer-logo-round">
                 <span class="sitename">Pochoclos "La 22"</span>
               </a>
               <div class="social-links mt-4">
@@ -352,24 +348,7 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/carrito.js"></script>
-<!-- Modal Agregado al Carrito -->
-<div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content rounded-3 border-0 shadow">
-      <div class="modal-header">
-        <h5 class="modal-title">✅ Producto agregado</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-      </div>
-      <div class="modal-body text-center">
-        <p id="cartModalMessage" class="mb-3"></p>
-        <div class="d-flex justify-content-center gap-3">
-          <button class="btn btn-outline-primary" data-bs-dismiss="modal">Seguir comprando</button>
-          <a href="cart.html" class="btn btn-primary">Ver carrito</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<div id="cart-toast-container" class="cart-toast-container" aria-live="polite" aria-atomic="true"></div>
 <script>
 const productos = {
   1: {
@@ -390,7 +369,7 @@ const productos = {
   },
   3: {
     nombre: "Garrapiñadas de maní",
-    precio: 3000,
+    precio: 4000,
     precioOriginal: 4500,
     descripcion: "Maní tostado envuelto en una capa crujiente de caramelo. Un snack dulce y crocante que no podés dejar de probar.",
     img: "assets/img/product/garraAlmendraa.png",
@@ -419,6 +398,8 @@ function cargarDetalleProducto() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
 
+  const purchaseSection = document.querySelector(".purchase-section");
+
   if (!id || !productos[id]) {
     document.querySelector(".product-name").textContent = "Producto no encontrado";
     document.querySelector(".product-description p").textContent = "Lo sentimos, el producto que buscas no existe.";
@@ -426,8 +407,11 @@ function cargarDetalleProducto() {
     document.querySelector(".regular-price").textContent = "";
     document.getElementById("main-product-image").src = "assets/img/product/not-found.png";
     document.getElementById("main-product-image").setAttribute("data-zoom", "assets/img/product/not-found.png");
+    if (purchaseSection) purchaseSection.style.display = "none";
     return;
   }
+
+  if (purchaseSection) purchaseSection.style.display = "";
 
   const producto = productos[id];
 
@@ -446,6 +430,7 @@ function cargarDetalleProducto() {
     boton.setAttribute("data-name", producto.nombre);
     boton.setAttribute("data-price", producto.precio);
     boton.setAttribute("data-img", producto.img);
+    boton.disabled = !producto.disponible;
   }
 
   // Actualizar estado de disponibilidad
@@ -457,9 +442,22 @@ function cargarDetalleProducto() {
       ? "bi bi-check-circle-fill text-success" 
       : "bi bi-x-circle-fill text-danger";
   }
+
+  // Selector de cantidad en detalle
+  const qtyInput = document.getElementById("product-qty");
+  document.querySelectorAll(".product-qty-decrease, .product-qty-increase").forEach(btn => {
+    btn.onclick = () => {
+      let val = parseInt(qtyInput.value, 10) || 1;
+      if (btn.classList.contains("product-qty-decrease")) {
+        val = Math.max(1, val - 1);
+      } else {
+        val = Math.min(99, val + 1);
+      }
+      qtyInput.value = val;
+    };
+  });
 }
 
-// Cargar el producto cuando la página termine de cargar
 document.addEventListener("DOMContentLoaded", cargarDetalleProducto);
 </script>
 
