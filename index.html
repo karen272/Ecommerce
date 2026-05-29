@@ -164,7 +164,7 @@
             <div class="features-list" data-aos="fade-up" data-aos-delay="300">
               <div class="feature-item">
                 <i class="bi bi-truck"></i>
-                <span>Envio gratis</span>
+                <span>Envío gratis</span>
               </div>
               <div class="feature-item">
                 <i class="bi bi-award"></i>
@@ -230,12 +230,6 @@
                     <i class="bi bi-heart"></i>
                   </button> -->
                 </div>
-
-                <!-- BOTÓN con data-atributos -->
-                <button class="cart-btn" data-name="Pochoclos Dulces" data-price="3000" data-id="3"
-                  data-img="assets/img/product/pochoclo1.png">
-                  Agregar al carrito
-                </button>
               </div>
 
               <div class="product-info">
@@ -252,6 +246,10 @@
                 </div>
                 <div class="product-price">$3.000</div>
               </div>
+              <button type="button" class="cart-btn" data-name="Pochoclos Dulces" data-price="3000" data-id="1"
+                data-img="assets/img/product/pochoclo1.png">
+                Agregar al carrito
+              </button>
             </div>
           </div>
           <!-- End Product pochoclos-->
@@ -266,11 +264,6 @@
                     <i class="bi bi-heart"></i>
                   </button> -->
                 </div>
-                <!-- BOTÓN con data-atributos -->
-                <button class="cart-btn" data-name="Algodón de azúcar" data-price="3000" data-id="4"
-                  data-img="assets/img/product/copo.png">
-                  Agregar al carrito
-                </button>
               </div>
               <div class="product-info">
                 <h4 class="product-name fw-bold"><a href="product-details.html?id=2">Algodón de azúcar</a></h4>
@@ -286,6 +279,10 @@
                 </div>
                 <div class="product-price">$3.000</div>
               </div>
+              <button type="button" class="cart-btn" data-name="Algodón de azúcar" data-price="3000" data-id="2"
+                data-img="assets/img/product/copo.png">
+                Agregar al carrito
+              </button>
             </div>
           </div>
           <!-- End Product -->
@@ -302,10 +299,6 @@
                   <i class="bi bi-heart"></i>
                 </button>
               </div> -->
-                <button class="cart-btn" data-name="Garrapiñadas de maní" data-price="3000" data-id="5"
-                  data-img="assets/img/product/garraAlmendraa.png">
-                  Agregar al carrito
-                </button>
               </div>
               <div class="product-info">
                 <h4 class="product-name fw-bold"><a href="product-details.html?id=3">Garrapiñadas de maní</a></h4>
@@ -319,24 +312,23 @@
                   </div>
                   <span class="rating-count">(12)</span>
                 </div>
-                <div class="product-price">$3.000</div>
+                <div class="product-price">$4.000</div>
               </div>
+              <button type="button" class="cart-btn" data-name="Garrapiñadas de maní" data-price="4000" data-id="3"
+                data-img="assets/img/product/garraAlmendraa.png">
+                Agregar al carrito
+              </button>
             </div>
           </div>
           <!-- End Product -->
 
 
-          <!-- Producto: Garrapiñadas de Almendras -->
+          <!-- Producto: Garrapiñadas de Almendras (oculto por ahora)
           <div class="col-lg-3 col-md-6">
             <div class="product-item">
               <div class="product-image">
                 <img src="assets/img/product/garraAlmendraa.png" alt="Garrapiñadas de almendras" class="img-fluid"
                   loading="lazy">
-                <!-- <div class="product-actions">
-                <button class="action-btn wishlist-btn">
-                  <i class="bi bi-heart"></i>
-                </button>
-              </div> -->
                 <button class="cart-btn" data-name="Garrapiñadas de almendras" data-price="4000" data-id="6"
                   data-img="assets/img/product/garraAlmendraa.png">
                   Agregar al carrito
@@ -358,19 +350,14 @@
               </div>
             </div>
           </div>
-          <!-- End Product -->
+          End Product -->
 
 
-          <!-- Producto: Manzana Caramelizada -->
+          <!-- Producto: Manzana Caramelizada (oculto por ahora)
           <div class="col-lg-3 col-md-6">
             <div class="product-item">
               <div class="product-image">
                 <img src="assets/img/product/manzana.png" alt="Manzana caramelizada" class="img-fluid" loading="lazy">
-                <!-- <div class="product-actions">
-                <button class="action-btn wishlist-btn">
-                  <i class="bi bi-heart"></i>
-                </button>
-              </div> -->
                 <button class="cart-btn" data-name="Manzana caramelizada" data-price="4000" data-id="7"
                   data-img="assets/img/product/manzana.png">
                   Agregar al carrito
@@ -392,7 +379,7 @@
               </div>
             </div>
           </div>
-          <!-- End Product -->
+          End Product -->
 
         </div>
 
@@ -748,7 +735,8 @@
         <div class="row gy-4">
           <div class="col-lg-4 col-md-6">
             <div class="footer-widget footer-about">
-              <a href="index.html" class="logo">
+              <a href="index.html" class="logo footer-brand">
+                <img src="assets/img/logo.png" alt="Pochoclos La 22" class="footer-logo-round">
                 <span class="sitename">Pochoclos "La 22"</span>
               </a>
               <div class="social-links mt-4">
@@ -840,24 +828,8 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/carrito.js"></script>
 
-  <!-- Modal Agregado al Carrito -->
-  <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content rounded-3 border-0 shadow">
-        <div class="modal-header">
-          <h5 class="modal-title">✅ Producto agregado</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body text-center">
-          <p id="cartModalMessage" class="mb-3"></p>
-          <div class="d-flex justify-content-center gap-3">
-            <button class="btn btn-outline-primary" data-bs-dismiss="modal">Seguir comprando</button>
-            <a href="cart.html" class="btn btn-primary">Ver carrito</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div id="cart-toast-container" class="cart-toast-container" aria-live="polite" aria-atomic="true"></div>
+
   <div class="modal fade" id="validationModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content rounded-3 border-0 shadow">
