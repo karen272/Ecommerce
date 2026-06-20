@@ -12942,16 +12942,16 @@ section,
 /* Sorteo — preview en carrito y checkout */
 .sorteo-preview {
   margin-top: 1rem;
-  padding: 0.875rem 1rem;
+  padding: 1rem 1.05rem;
   background: linear-gradient(135deg, rgba(230, 57, 70, 0.08), rgba(255, 193, 7, 0.12));
   border: 1px dashed rgba(230, 57, 70, 0.35);
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .sorteo-preview-inner {
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .sorteo-preview-icon {
@@ -12967,25 +12967,93 @@ section,
   font-size: 1.125rem;
 }
 
-.sorteo-preview-text strong {
+.sorteo-preview-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.sorteo-preview-title {
   display: block;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: var(--heading-color);
+  margin-bottom: 0.45rem;
+  line-height: 1.3;
+}
+
+.sorteo-preview-main {
+  margin: 0 0 0.5rem;
   font-size: 0.875rem;
+  line-height: 1.45;
   color: var(--heading-color);
-  margin-bottom: 0.2rem;
 }
 
-.sorteo-preview-text p {
+.sorteo-preview-num {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  background: rgba(116, 172, 223, 0.15);
+  border-radius: 6px;
+  font-weight: 800;
+  color: #1a3a5c;
+  white-space: nowrap;
+}
+
+.sorteo-preview-tip {
+  margin: 0 0 0.55rem;
   font-size: 0.8125rem;
-  color: var(--heading-color);
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--default-color), transparent 12%);
 }
 
-.sorteo-preview-text small {
+.sorteo-preview-tip strong {
+  color: #29629b;
+  font-weight: 800;
+}
+
+.sorteo-preview-meta {
+  margin: 0;
+  padding-top: 0.5rem;
+  border-top: 1px dashed rgba(230, 57, 70, 0.2);
   font-size: 0.75rem;
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--default-color), transparent 22%);
+}
+
+.sorteo-preview-meta i {
+  color: #74acdf;
+  font-size: 0.8125rem;
+  vertical-align: -0.05em;
 }
 
 .cart .sorteo-preview {
   margin-bottom: 0.5rem;
+}
+
+@media (max-width: 575.98px) {
+  .sorteo-preview {
+    padding: 1rem 0.9rem;
+  }
+
+  .sorteo-preview-inner {
+    gap: 0.75rem;
+  }
+
+  .sorteo-preview-title {
+    font-size: 0.9375rem;
+  }
+
+  .sorteo-preview-main {
+    font-size: 0.875rem;
+  }
+
+  .sorteo-preview-tip {
+    font-size: 0.8125rem;
+  }
+
+  .sorteo-preview-meta {
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -13893,7 +13961,44 @@ section,
   width: 100%;
 }
 
+.sorteo-argentina-mascot-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0.65rem;
+  background: linear-gradient(135deg, #ffffff 0%, #eef6fc 100%);
+  border: 3px solid #74acdf;
+  border-radius: 20px;
+  box-shadow:
+    0 8px 24px rgba(41, 98, 155, 0.15),
+    0 0 0 4px rgba(255, 215, 0, 0.35);
+}
+
+.sorteo-argentina-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.35rem;
+  text-align: center;
+}
+
+.sorteo-argentina-top .sorteo-argentina-badge {
+  margin-bottom: 0;
+}
+
+.sorteo-argentina-mascot {
+  display: block;
+  width: 145px;
+  height: auto;
+  border-radius: 14px;
+}
+
 .sorteo-argentina-img {
+  display: block;
   width: 100%;
   max-width: 420px;
   height: auto;
@@ -14006,6 +14111,19 @@ section,
     max-width: 520px;
   }
 
+  .sorteo-argentina-mascot-wrap {
+    padding: 0.75rem;
+  }
+
+  .sorteo-argentina-mascot {
+    width: 175px;
+  }
+
+  .sorteo-argentina-top {
+    margin-bottom: 1.5rem;
+    gap: 1.15rem;
+  }
+
   .sorteo-argentina-lead {
     max-width: 36rem;
     margin-left: auto;
@@ -14053,6 +14171,19 @@ section,
 
   .sorteo-argentina-img {
     max-width: 420px;
+  }
+
+  .sorteo-argentina-mascot-wrap {
+    padding: 0.6rem;
+  }
+
+  .sorteo-argentina-mascot {
+    width: 130px;
+  }
+
+  .sorteo-argentina-top {
+    margin-bottom: 1rem;
+    gap: 0.85rem;
   }
 }
 
