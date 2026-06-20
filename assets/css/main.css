@@ -13234,6 +13234,1164 @@ section,
   }
 }
 
+/*--------------------------------------------------------------
+# Sorteo Argentina — Scaloneta
+--------------------------------------------------------------*/
+.sorteo-argentina {
+  position: relative;
+  padding: 2.5rem 0;
+  background: linear-gradient(135deg, #6cb4ee 0%, #9fd3f7 35%, #ffffff 50%, #9fd3f7 65%, #6cb4ee 100%);
+  overflow: hidden;
+}
+
+.sorteo-argentina-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.sorteo-argentina-confetti span {
+  position: absolute;
+  top: -12%;
+  width: 10px;
+  height: 14px;
+  opacity: 0.85;
+  animation: sorteo-confetti-fall linear infinite;
+}
+
+.sorteo-argentina-confetti span:nth-child(odd) {
+  background: #74acdf;
+  border-radius: 2px;
+}
+
+.sorteo-argentina-confetti span:nth-child(even) {
+  background: #ffffff;
+  border: 1px solid rgba(116, 172, 223, 0.4);
+  border-radius: 2px;
+}
+
+.sorteo-argentina-confetti span:nth-child(3n) {
+  background: #ffd700;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.sorteo-argentina-confetti span:nth-child(1)  { left: 4%;  animation-duration: 7s;  animation-delay: 0s; }
+.sorteo-argentina-confetti span:nth-child(2)  { left: 12%; animation-duration: 9s;  animation-delay: 0.5s; }
+.sorteo-argentina-confetti span:nth-child(3)  { left: 20%; animation-duration: 8s;  animation-delay: 1s; }
+.sorteo-argentina-confetti span:nth-child(4)  { left: 28%; animation-duration: 10s; animation-delay: 0.2s; }
+.sorteo-argentina-confetti span:nth-child(5)  { left: 36%; animation-duration: 7.5s; animation-delay: 1.5s; }
+.sorteo-argentina-confetti span:nth-child(6)  { left: 44%; animation-duration: 9.5s; animation-delay: 0.8s; }
+.sorteo-argentina-confetti span:nth-child(7)  { left: 52%; animation-duration: 8.5s; animation-delay: 2s; }
+.sorteo-argentina-confetti span:nth-child(8)  { left: 60%; animation-duration: 11s; animation-delay: 0.3s; }
+.sorteo-argentina-confetti span:nth-child(9)  { left: 68%; animation-duration: 7s;  animation-delay: 1.2s; }
+.sorteo-argentina-confetti span:nth-child(10) { left: 76%; animation-duration: 9s;  animation-delay: 0.6s; }
+.sorteo-argentina-confetti span:nth-child(11) { left: 84%; animation-duration: 8s;  animation-delay: 1.8s; }
+.sorteo-argentina-confetti span:nth-child(12) { left: 92%; animation-duration: 10s; animation-delay: 0.4s; }
+.sorteo-argentina-confetti span:nth-child(13) { left: 8%;  animation-duration: 8.5s; animation-delay: 2.5s; }
+.sorteo-argentina-confetti span:nth-child(14) { left: 24%; animation-duration: 7s;  animation-delay: 3s; }
+.sorteo-argentina-confetti span:nth-child(15) { left: 40%; animation-duration: 9s;  animation-delay: 2.2s; }
+.sorteo-argentina-confetti span:nth-child(16) { left: 56%; animation-duration: 10s; animation-delay: 1.7s; }
+.sorteo-argentina-confetti span:nth-child(17) { left: 72%; animation-duration: 8s;  animation-delay: 2.8s; }
+.sorteo-argentina-confetti span:nth-child(18) { left: 88%; animation-duration: 11s; animation-delay: 3.2s; }
+.sorteo-argentina-confetti span:nth-child(19) { left: 16%; animation-duration: 9.5s; animation-delay: 0.9s; }
+.sorteo-argentina-confetti span:nth-child(20) { left: 48%; animation-duration: 7.5s; animation-delay: 1.4s; }
+.sorteo-argentina-confetti span:nth-child(21) { left: 64%; animation-duration: 8.5s; animation-delay: 2.1s; }
+.sorteo-argentina-confetti span:nth-child(22) { left: 32%; animation-duration: 10s; animation-delay: 3.5s; }
+.sorteo-argentina-confetti span:nth-child(23) { left: 80%; animation-duration: 7s;  animation-delay: 1.1s; }
+.sorteo-argentina-confetti span:nth-child(24) { left: 96%; animation-duration: 9s;  animation-delay: 2.6s; }
+
+@keyframes sorteo-confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0.2;
+  }
+}
+
+.sorteo-argentina .container {
+  position: relative;
+  z-index: 1;
+}
+
+.sorteo-argentina-card {
+  position: relative;
+  padding: 2rem 1.75rem;
+  background: rgba(255, 255, 255, 0.92);
+  border: 3px solid #74acdf;
+  border-radius: 24px;
+  box-shadow:
+    0 16px 48px rgba(41, 98, 155, 0.18),
+    0 0 0 6px rgba(255, 215, 0, 0.25);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+}
+
+.sorteo-argentina-flag-stripe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #74acdf 33%, #ffffff 33%, #ffffff 66%, #74acdf 66%);
+}
+
+.sorteo-argentina-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1rem;
+  margin-bottom: 0.85rem;
+  background: linear-gradient(135deg, #ffd700, #ffb700);
+  color: #1a3a5c;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 50px;
+  box-shadow: 0 4px 14px rgba(255, 183, 0, 0.45);
+  animation: sorteo-badge-pulse 2s ease-in-out infinite;
+}
+
+@keyframes sorteo-badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.sorteo-argentina-title {
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  font-weight: 900;
+  color: #1a3a5c;
+  margin-bottom: 0.65rem;
+  line-height: 1.15;
+  text-shadow: 0 2px 0 rgba(255, 255, 255, 0.8);
+}
+
+.sorteo-argentina-lead {
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--default-color), transparent 10%);
+  margin-bottom: 1.25rem;
+}
+
+.sorteo-argentina-subtitle {
+  font-size: 0.9375rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #29629b;
+  margin-bottom: 0.5rem;
+}
+
+.sorteo-argentina-numeros {
+  margin-bottom: 1.25rem;
+  padding: 1.15rem 1.2rem;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  border: 1px solid rgba(116, 172, 223, 0.4);
+  box-shadow: 0 6px 20px rgba(41, 98, 155, 0.08);
+}
+
+.sorteo-argentina-numeros .sorteo-argentina-subtitle {
+  margin-bottom: 0.85rem;
+}
+
+.sorteo-argentina-numeros-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.sorteo-argentina-numero-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.9rem 1rem;
+  background: #fff;
+  border: 1px solid rgba(116, 172, 223, 0.25);
+  border-radius: 12px;
+  text-align: left;
+}
+
+.sorteo-argentina-numero-item--plus {
+  background: linear-gradient(135deg, #fff 0%, rgba(116, 172, 223, 0.08) 100%);
+  border-color: #74acdf;
+}
+
+.sorteo-argentina-numero-badge {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: #74acdf;
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 4px 10px rgba(116, 172, 223, 0.35);
+}
+
+.sorteo-argentina-numero-item--plus .sorteo-argentina-numero-badge {
+  background: linear-gradient(135deg, #ffd700, #ffb700);
+  color: #4a3800;
+  box-shadow: 0 4px 10px rgba(255, 183, 0, 0.35);
+}
+
+.sorteo-argentina-numero-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.sorteo-argentina-numero-title {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  line-height: 1.35;
+  color: #1a3a5c;
+}
+
+.sorteo-argentina-numero-text {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+}
+
+@media (min-width: 992px) {
+  .sorteo-argentina-numeros {
+    padding: 1.25rem 1.35rem;
+  }
+
+  .sorteo-argentina-numeros-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+  }
+
+  .sorteo-argentina-numero-item {
+    padding: 1rem 1.1rem;
+    gap: 1rem;
+  }
+
+  .sorteo-argentina-numero-badge {
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 1.25rem;
+  }
+
+  .sorteo-argentina-numero-title {
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .sorteo-argentina-numero-text {
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .sorteo-argentina-numeros {
+    text-align: left;
+    padding: 1rem;
+  }
+
+  .sorteo-argentina-numeros .sorteo-argentina-subtitle {
+    text-align: center;
+    font-size: 0.8125rem;
+  }
+
+  .sorteo-argentina-numero-item {
+    padding: 0.85rem 0.9rem;
+    gap: 0.75rem;
+  }
+
+  .sorteo-argentina-numero-badge {
+    width: 2.35rem;
+    height: 2.35rem;
+    font-size: 1.0625rem;
+  }
+
+  .sorteo-argentina-numero-title {
+    font-size: 0.9375rem;
+    line-height: 1.4;
+  }
+
+  .sorteo-argentina-numero-text {
+    font-size: 0.8125rem;
+    line-height: 1.55;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .sorteo-argentina-numero-title {
+    font-size: 0.875rem;
+  }
+
+  .sorteo-argentina-numero-text {
+    font-size: 0.8125rem;
+  }
+}
+
+.sorteo-argentina-premios {
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.15rem;
+  background: linear-gradient(135deg, rgba(116, 172, 223, 0.12), rgba(255, 215, 0, 0.12));
+  border-radius: 14px;
+  border: 1px dashed #74acdf;
+}
+
+.sorteo-argentina-premios-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sorteo-argentina-premios-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+.sorteo-argentina-premios-list li i {
+  color: #ffd700;
+  font-size: 0.875rem;
+}
+
+.sorteo-argentina-requisitos {
+  margin-bottom: 1.35rem;
+}
+
+.sorteo-argentina-info-row {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.sorteo-argentina-info-row .sorteo-argentina-premios,
+.sorteo-argentina-info-row .sorteo-argentina-requisitos {
+  margin-bottom: 0;
+}
+
+.sorteo-argentina-info-row + .sorteo-argentina-bonus {
+  width: 100%;
+  margin-bottom: 1.35rem;
+}
+
+.sorteo-argentina-rules {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.85rem;
+}
+
+.sorteo-argentina-rules li {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 0;
+  font-size: 0.9375rem;
+  color: var(--heading-color);
+}
+
+.sorteo-argentina-rules li i {
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #74acdf;
+  color: #fff;
+  font-size: 0.9375rem;
+}
+
+.sorteo-argentina-rules a {
+  color: #29629b;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sorteo-argentina-bonus {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 0;
+  padding: 1.1rem 1.25rem;
+  background: linear-gradient(135deg, #fffbeb 0%, #fff3cd 55%, #ffe8a3 100%);
+  border: 2px solid #ffd700;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(255, 183, 0, 0.15);
+}
+
+.sorteo-argentina-bonus-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffd700, #ffb700);
+  color: #5c4a00;
+  font-size: 1.35rem;
+  box-shadow: 0 4px 12px rgba(255, 183, 0, 0.35);
+}
+
+.sorteo-argentina-bonus-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.sorteo-argentina-bonus-tag {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  padding: 0.15rem 0.55rem;
+  background: rgba(255, 183, 0, 0.35);
+  color: #7a5c00;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+}
+
+.sorteo-argentina-bonus-title {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 1.125rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #4a3800;
+}
+
+.sorteo-argentina-bonus-text {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #5c4a00;
+}
+
+.sorteo-argentina-bonus-text strong {
+  color: #3d2f00;
+  font-weight: 800;
+}
+
+.sorteo-argentina-fecha {
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+  margin-bottom: 1.35rem;
+  padding: 1.1rem 1.25rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(116, 172, 223, 0.08));
+  border: 2px solid #74acdf;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(41, 98, 155, 0.1);
+}
+
+.sorteo-argentina-fecha-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: #74acdf;
+  color: #fff;
+  font-size: 1.35rem;
+  align-self: center;
+  box-shadow: 0 4px 12px rgba(116, 172, 223, 0.35);
+}
+
+.sorteo-argentina-fecha-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.sorteo-argentina-fecha-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.sorteo-argentina-fecha-label {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #29629b;
+}
+
+.sorteo-argentina-fecha-value {
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.35;
+  color: #1a3a5c;
+}
+
+.sorteo-argentina-fecha-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(116, 172, 223, 0.5), rgba(116, 172, 223, 0.15));
+}
+
+@media (min-width: 992px) {
+  .sorteo-argentina-bonus {
+    padding: 1.25rem 1.5rem;
+    gap: 1.15rem;
+  }
+
+  .sorteo-argentina-bonus-icon {
+    width: 3.25rem;
+    height: 3.25rem;
+    font-size: 1.5rem;
+  }
+
+  .sorteo-argentina-bonus-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .sorteo-argentina-bonus-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 34rem;
+  }
+
+  .sorteo-argentina-fecha {
+    padding: 1.25rem 1.5rem;
+    gap: 1.15rem;
+  }
+
+  .sorteo-argentina-fecha-body {
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+  }
+
+  .sorteo-argentina-fecha-item {
+    flex: 1;
+    padding: 0 1.25rem;
+  }
+
+  .sorteo-argentina-fecha-item:first-child {
+    padding-left: 0;
+  }
+
+  .sorteo-argentina-fecha-item:last-child {
+    padding-right: 0;
+  }
+
+  .sorteo-argentina-fecha-divider {
+    width: 1px;
+    height: 2.75rem;
+    flex-shrink: 0;
+    background: linear-gradient(180deg, rgba(116, 172, 223, 0.15), rgba(116, 172, 223, 0.55), rgba(116, 172, 223, 0.15));
+  }
+
+  .sorteo-argentina-fecha-label {
+    font-size: 0.75rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .sorteo-argentina-fecha-value {
+    font-size: 1.0625rem;
+  }
+}
+
+.btn-sorteo-pedi,
+.btn-sorteo-pedi:hover,
+.btn-sorteo-pedi:focus,
+.btn-sorteo-pedi:active,
+.btn-sorteo-pedi:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 2.25rem;
+  background: linear-gradient(135deg, #e63946, #c1121f) !important;
+  color: #ffffff !important;
+  font-weight: 800;
+  font-size: 1.0625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 8px 28px rgba(230, 57, 70, 0.45);
+  animation: sorteo-cta-glow 2.5s ease-in-out infinite;
+  transition: transform 0.2s ease;
+}
+
+.btn-sorteo-pedi:hover {
+  color: #ffffff !important;
+  transform: translateY(-3px) scale(1.02);
+}
+
+@keyframes sorteo-cta-glow {
+  0%, 100% { box-shadow: 0 8px 28px rgba(230, 57, 70, 0.45); }
+  50% { box-shadow: 0 12px 36px rgba(230, 57, 70, 0.65), 0 0 0 4px rgba(255, 215, 0, 0.35); }
+}
+
+.sorteo-argentina-note {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+}
+
+.sorteo-argentina-note i {
+  color: #74acdf;
+}
+
+.sorteo-argentina-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sorteo-argentina-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  min-width: 0;
+}
+
+.sorteo-argentina-img-col {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.sorteo-argentina-img-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.sorteo-argentina-img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: 20px;
+  border: 4px solid #ffffff;
+  box-shadow:
+    0 16px 40px rgba(41, 98, 155, 0.25),
+    0 0 0 4px #74acdf;
+  object-fit: contain;
+  object-position: center;
+  margin: 0 auto;
+}
+
+.sorteo-argentina-numeros,
+.sorteo-argentina-info-row,
+.sorteo-argentina-bonus,
+.sorteo-argentina-premios,
+.sorteo-argentina-requisitos,
+.sorteo-argentina-fecha,
+.sorteo-argentina-bonus {
+  width: 100%;
+  text-align: left;
+}
+
+.sorteo-argentina-numeros .sorteo-argentina-subtitle,
+.sorteo-argentina-premios .sorteo-argentina-subtitle,
+.sorteo-argentina-requisitos .sorteo-argentina-subtitle {
+  text-align: center;
+}
+
+.sorteo-argentina-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .sorteo-argentina-card {
+    text-align: center;
+    padding: 2.25rem 2rem;
+  }
+
+  .sorteo-argentina-layout {
+    max-width: 960px;
+    gap: 1.75rem;
+  }
+
+  .sorteo-argentina-info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  .sorteo-argentina-info-row .sorteo-argentina-premios,
+  .sorteo-argentina-info-row .sorteo-argentina-requisitos {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.15rem 1.25rem;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    border: 1px solid rgba(116, 172, 223, 0.35);
+    box-shadow: 0 6px 20px rgba(41, 98, 155, 0.06);
+  }
+
+  .sorteo-argentina-info-row .sorteo-argentina-premios {
+    background: linear-gradient(135deg, rgba(116, 172, 223, 0.1), rgba(255, 215, 0, 0.1));
+    border-style: dashed;
+  }
+
+  .sorteo-argentina-premios-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    flex: 1;
+    align-content: start;
+  }
+
+  .sorteo-argentina-premios-list li {
+    padding: 0.75rem 0.85rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    border: 1px solid rgba(116, 172, 223, 0.2);
+    font-size: 0.9375rem;
+    line-height: 1.35;
+  }
+
+  .sorteo-argentina-rules {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 0;
+    flex: 1;
+    align-content: start;
+  }
+
+  .sorteo-argentina-rules li {
+    padding: 0.75rem 0.85rem;
+    background: rgba(116, 172, 223, 0.08);
+    border-radius: 12px;
+    border: 1px solid rgba(116, 172, 223, 0.2);
+    font-size: 0.875rem;
+    line-height: 1.35;
+  }
+
+  .sorteo-argentina-img {
+    max-width: 520px;
+  }
+
+  .sorteo-argentina-lead {
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sorteo-argentina-numeros-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sorteo-argentina-note {
+    max-width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .sorteo-argentina {
+    padding: 2rem 0;
+  }
+
+  .sorteo-argentina-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .sorteo-argentina-layout {
+    gap: 1rem;
+    max-width: 100%;
+  }
+
+  .sorteo-argentina-info-row .sorteo-argentina-requisitos {
+    margin-top: 1.25rem;
+    padding-top: 0.25rem;
+  }
+
+  .sorteo-argentina-rules li {
+    justify-content: flex-start;
+  }
+
+  .btn-sorteo-pedi {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .sorteo-argentina-img {
+    max-width: 420px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sorteo-argentina-confetti span,
+  .sorteo-argentina-badge,
+  .btn-sorteo-pedi {
+    animation: none;
+  }
+}
+
+/*--------------------------------------------------------------
+# Instagram CTA — inicio
+--------------------------------------------------------------*/
+.instagram-cta {
+  padding: 1rem 0 2.5rem;
+  background: #fff;
+}
+
+.instagram-cta-card {
+  padding: 2rem 1.75rem;
+  background: linear-gradient(135deg, #fdf8f0 0%, #fff5eb 50%, #fdf8f0 100%);
+  border: 2px solid #f0e0cc;
+  border-radius: 20px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.06);
+}
+
+.instagram-cta-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: #fff;
+  font-size: 2.25rem;
+  box-shadow: 0 8px 24px rgba(188, 24, 136, 0.25);
+}
+
+.social-cta-icons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.facebook-cta-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background: #1877f2;
+  color: #fff;
+  font-size: 2.25rem;
+  box-shadow: 0 8px 24px rgba(24, 119, 242, 0.25);
+}
+
+.social-cta-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media (min-width: 992px) {
+  .social-cta-buttons {
+    align-items: flex-end;
+  }
+}
+
+.instagram-cta-label {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #e63946;
+}
+
+.instagram-cta-title {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 800;
+  color: var(--heading-color);
+  margin-bottom: 0.5rem;
+}
+
+.instagram-cta-text {
+  font-size: 0.9375rem;
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+  margin-bottom: 0.5rem;
+  line-height: 1.55;
+}
+
+.instagram-cta-handle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #bc1888;
+}
+
+.btn-instagram-follow,
+.btn-instagram-follow:hover,
+.btn-instagram-follow:focus,
+.btn-instagram-follow:active,
+.btn-instagram-follow:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(188, 24, 136, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-instagram-follow i {
+  color: #ffffff !important;
+  font-size: 1.125rem;
+}
+
+.btn-instagram-follow:hover {
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(188, 24, 136, 0.4);
+}
+
+.btn-facebook-follow,
+.btn-facebook-follow:hover,
+.btn-facebook-follow:focus,
+.btn-facebook-follow:active,
+.btn-facebook-follow:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #1877f2 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(24, 119, 242, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-facebook-follow i {
+  color: #ffffff !important;
+  font-size: 1.125rem;
+}
+
+.btn-facebook-follow:hover {
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(24, 119, 242, 0.4);
+}
+
+@media (max-width: 991.98px) {
+  .instagram-cta-card {
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+  }
+
+  .instagram-cta-text {
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .instagram-cta-handle {
+    margin-bottom: 0.5rem;
+  }
+
+  .btn-instagram-follow,
+  .btn-facebook-follow {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+.instagram-posts-header {
+  border-top: 1px dashed rgba(230, 57, 70, 0.2);
+}
+
+.instagram-posts-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin: 0;
+}
+
+.instagram-post-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid #f0e0cc;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.instagram-post-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  pointer-events: none;
+}
+
+.instagram-feed-status {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.instagram-feed-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+  font-size: 0.9375rem;
+}
+
+.instagram-feed-spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgba(230, 57, 70, 0.2);
+  border-top-color: #e63946;
+  border-radius: 50%;
+  animation: instagram-spin 0.8s linear infinite;
+}
+
+@keyframes instagram-spin {
+  to { transform: rotate(360deg); }
+}
+
+.instagram-feed-error {
+  margin-bottom: 1rem;
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+  font-size: 0.9375rem;
+}
+
+.instagram-feed-setup-hint {
+  max-width: 36rem;
+  margin: 0 auto 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.instagram-feed-setup-hint code {
+  font-size: 0.8125rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+  background: rgba(230, 57, 70, 0.08);
+}
+
+.instagram-post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(188, 24, 136, 0.2);
+}
+
+.instagram-post-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.instagram-post-card:hover .instagram-post-img {
+  transform: scale(1.05);
+}
+
+.instagram-post-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  background: rgba(188, 24, 136, 0.55);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.instagram-post-overlay i {
+  font-size: 2rem;
+}
+
+.instagram-post-card:hover .instagram-post-overlay {
+  opacity: 1;
+}
+
+.instagram-post-embed {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid #f0e0cc;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  min-height: 420px;
+}
+
+.instagram-post-embed .instagram-media {
+  margin: 0 auto !important;
+}
+
+@media (max-width: 767.98px) {
+  #instagram-posts .instagram-post-card {
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .instagram-post-overlay {
+    opacity: 1;
+    background: rgba(188, 24, 136, 0.35);
+  }
+}
+
 .cart-toast-body {
   flex: 1;
   min-width: 0;
