@@ -1,34 +1,34 @@
 /**
- * Sorteo por monto de compra
- * > $5.000  → 1 número | ≥ $10.000 → 4 | ≥ $20.000 → 7
- * Los números se guardan en localStorage (únicos en este navegador).
- * Para control global entre todos los clientes hace falta un backend.
+ * Sorteo Scaloneta — números únicos por pedido confirmado.
+ * 1 número por pedido | Compra mayor a $12.000 → 2 números en ese pedido.
+ * Los números usados se guardan en localStorage (únicos en este navegador).
  */
 const SORTEO = {
   KEY_USADOS: "sorteo_numeros_usados",
   NUM_MIN: 1,
   NUM_MAX: 9999,
+  MONTO_DOBLE_NUMEROS: 12000,
 };
 
-function cantidadChancesSorteo(totalCompra) {
-  if (totalCompra >= 20000) return 7;
-  if (totalCompra >= 10000) return 4;
-  if (totalCompra > 5000) return 1;
-  return 0;
+function cantidadNumerosPorPedido(totalCompra) {
+  const total = Number(totalCompra) || 0;
+  return total > SORTEO.MONTO_DOBLE_NUMEROS ? 2 : 1;
 }
 
-function descripcionNivelSorteo(totalCompra) {
-  const n = cantidadChancesSorteo(totalCompra);
-  if (n === 7) return "Compra de $20.000 o más — 7 números";
-  if (n === 4) return "Compra de $10.000 o más — 4 números";
-  if (n === 1) return "Compra mayor a $5.000 — 1 número";
-  return "Sumá más de $5.000 para participar del sorteo";
+function descripcionCantidadNumeros(totalCompra) {
+  const cantidad = cantidadNumerosPorPedido(totalCompra);
+  if (cantidad === 2) {
+    return `Compra mayor a $${SORTEO.MONTO_DOBLE_NUMEROS.toLocaleString("es-AR")} — 2 números`;
+  }
+  return "1 número por pedido";
 }
 
 function obtenerNumerosUsadosSorteo() {
   try {
     const data = JSON.parse(localStorage.getItem(SORTEO.KEY_USADOS) || "[]");
-    return Array.isArray(data) ? data.map(Number).filter((n) => !isNaN(n) && n >= SORTEO.NUM_MIN && n <= SORTEO.NUM_MAX) : [];
+    return Array.isArray(data)
+      ? data.map(Number).filter((n) => !isNaN(n) && n >= SORTEO.NUM_MIN && n <= SORTEO.NUM_MAX)
+      : [];
   } catch {
     return [];
   }
@@ -78,36 +78,53 @@ function formatearNumerosSorteo(lista) {
   return lista.map(formatearNumeroSorteo).join(", ");
 }
 
-function textoSorteoWhatsApp(totalCompra, numeros) {
+function textoSorteoWhatsApp(numeros, totalCompra) {
   if (!numeros.length) return "";
 
-  let texto = "\n\n🎟️ *SORTEO*\n";
-  texto += `${descripcionNivelSorteo(totalCompra)}\n`;
-  texto += `Números asignados (${numeros.length}): *${formatearNumerosSorteo(numeros)}*\n`;
-  texto += "_Cada número es único (no se repite)._";
+  const total = Number(totalCompra) || 0;
+  const etiqueta = numeros.length > 1 ? "Números asignados" : "Número asignado";
+
+  let texto = "\n\n*SORTEO — Alentemos a la Scaloneta*\n";
+  texto += `${descripcionCantidadNumeros(total)}\n`;
+  texto += `${etiqueta} (${numeros.length}): *${formatearNumerosSorteo(numeros)}*`;
   return texto;
 }
 
-function actualizarPreviewSorteo(totalCompra) {
+function actualizarPreviewSorteo(cantidadItems, totalCompra) {
   const el = document.getElementById("sorteo-preview");
   if (!el) return;
 
-  const chances = cantidadChancesSorteo(totalCompra);
-  if (chances === 0) {
+  if (!cantidadItems || cantidadItems <= 0) {
     el.classList.add("d-none");
     el.innerHTML = "";
     return;
   }
+
+  const total = Number(totalCompra) || 0;
+  const cantidad = cantidadNumerosPorPedido(total);
+  const montoFormateado = SORTEO.MONTO_DOBLE_NUMEROS.toLocaleString("es-AR");
+
+  const lineaNumeros =
+    cantidad === 2
+      ? `Este pedido te da <span class="sorteo-preview-num">2 números</span> para el sorteo.`
+      : `Este pedido te da <span class="sorteo-preview-num">1 número</span> para el sorteo.`;
+
+  const lineaTip =
+    cantidad === 2
+      ? `¡Genial! Superaste los $${montoFormateado} y sumás doble chance en esta compra.`
+      : `Sumá más de $${montoFormateado} y recibís <strong>2 números</strong> en el mismo pedido.`;
 
   el.classList.remove("d-none");
   el.innerHTML = `
     <div class="sorteo-preview-inner">
       <div class="sorteo-preview-icon" aria-hidden="true"><i class="bi bi-ticket-perforated-fill"></i></div>
       <div class="sorteo-preview-text">
-        <strong>¡Participás del sorteo!</strong>
-        <p class="mb-0">${descripcionNivelSorteo(totalCompra)}</p>
-        <small>Al confirmar el pedido te enviamos tus números por WhatsApp.</small>
+        <strong class="sorteo-preview-title">¡Participás del sorteo!</strong>
+        <p class="sorteo-preview-main">${lineaNumeros}</p>
+        <p class="sorteo-preview-tip">${lineaTip}</p>
+        <p class="sorteo-preview-meta"><i class="bi bi-calendar-event" aria-hidden="true"></i> Sorteo: lunes 13 hs · <i class="bi bi-truck" aria-hidden="true"></i> Premio a domicilio</p>
       </div>
     </div>
   `;
 }
+

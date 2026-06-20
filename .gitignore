@@ -67,3 +67,7 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
+
+# Instagram API (credenciales y caché)
+api/instagram-config.php
+assets/data/instagram-cache.json
