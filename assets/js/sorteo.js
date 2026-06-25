@@ -1,8 +1,8 @@
 /**
- * Sorteo Scaloneta — números únicos por pedido confirmado.
- * 1 número por pedido | Compra mayor a $12.000 → 2 números en ese pedido.
- * Los números usados se guardan en localStorage (únicos en este navegador).
+ * Sorteo Scaloneta — DESACTIVADO
+ * Para reactivar: descomentar este archivo y volver a cargar sorteo.js en cart.html y checkout.html.
  */
+/*
 const SORTEO = {
   KEY_USADOS: "sorteo_numeros_usados",
   NUM_MIN: 1,
@@ -127,4 +127,4 @@ function actualizarPreviewSorteo(cantidadItems, totalCompra) {
     </div>
   `;
 }
-
+*/
