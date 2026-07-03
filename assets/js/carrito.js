@@ -202,11 +202,9 @@ function actualizarCheckout() {
   if (totalEl) totalEl.textContent = `$${total.toLocaleString()}`;
   if (btnPriceEl) btnPriceEl.textContent = `$${total.toLocaleString()}`;
 
-  /*
   if (typeof actualizarPreviewSorteo === "function") {
     actualizarPreviewSorteo(carrito.length, subtotal);
   }
-  */
 }
 // =========================
 // MOSTRAR CHECKOUT EN verificar.html
@@ -295,9 +293,8 @@ function generarLinkWhatsApp() {
   let total = subtotal + envio;
   mensaje += `\n*Total: $${total.toLocaleString("es-AR")}*`;
 
-  /*
   // --- Sorteo: números únicos según monto del pedido ---
-  const cantidadNumeros = typeof cantidadNumerosPorPedido === "function" ? cantidadNumerosPorPedido(total) : 1;
+  const cantidadNumeros = typeof cantidadNumerosPorPedido === "function" ? cantidadNumerosPorPedido(total) : 0;
   const resultadoSorteo = typeof generarNumerosSorteo === "function"
     ? generarNumerosSorteo(cantidadNumeros)
     : { numeros: [], error: null };
@@ -317,7 +314,6 @@ function generarLinkWhatsApp() {
   if (resultadoSorteo.numeros.length && typeof textoSorteoWhatsApp === "function") {
     mensaje += textoSorteoWhatsApp(resultadoSorteo.numeros, total);
   }
-  */
 
   // --- Enviar a WhatsApp ---
   const numero = "5492291459738";
