@@ -1,37 +1,35 @@
 /**
  * Sorteo Scaloneta — números únicos por pedido confirmado.
- * Más de $5.000 -> 1 número | Más de $10.000 -> 2 números.
+ * 1 número por cada producto en el carrito (suma de cantidades).
  * Los números usados se guardan en localStorage (únicos en este navegador).
  */
 const SORTEO = {
   KEY_USADOS: "sorteo_numeros_usados",
   NUM_MIN: 1,
   NUM_MAX: 9999,
-  MONTO_UN_NUMERO: 5000,
-  MONTO_DOBLE_NUMEROS: 10000,
 };
 
-function cantidadNumerosPorPedido(totalCompra) {
-  const total = Number(totalCompra) || 0;
-
-  if (total > SORTEO.MONTO_DOBLE_NUMEROS) return 2;
-  if (total > SORTEO.MONTO_UN_NUMERO) return 1;
-  return 0;
+function cantidadNumerosPorPedido(cantidadProductos) {
+  return Math.max(0, Math.floor(Number(cantidadProductos) || 0));
 }
 
-function descripcionCantidadNumeros(totalCompra) {
-  const total = Number(totalCompra) || 0;
-  const cantidad = cantidadNumerosPorPedido(total);
+function contarProductosEnCarrito(carrito) {
+  if (!Array.isArray(carrito)) return 0;
+  return carrito.reduce((acc, item) => acc + (Number(item.cantidad) || 0), 0);
+}
 
-  if (cantidad === 2) {
-    return `Compra mayor a $${SORTEO.MONTO_DOBLE_NUMEROS.toLocaleString("es-AR")} — 2 números`;
-  }
+function descripcionCantidadNumeros(cantidadProductos) {
+  const cantidad = cantidadNumerosPorPedido(cantidadProductos);
 
   if (cantidad === 1) {
-    return `Compra mayor a $${SORTEO.MONTO_UN_NUMERO.toLocaleString("es-AR")} — 1 número`;
+    return "1 producto en el pedido — 1 número";
   }
 
-  return `Compra menor o igual a $${SORTEO.MONTO_UN_NUMERO.toLocaleString("es-AR")} — sin número`;
+  if (cantidad > 1) {
+    return `${cantidad} productos en el pedido — ${cantidad} números`;
+  }
+
+  return "Sin productos en el pedido — sin números";
 }
 
 function obtenerNumerosUsadosSorteo() {
@@ -64,7 +62,7 @@ function generarNumerosSorteo(cantidad) {
   if (disponibles.length < cantidad) {
     return {
       numeros: [],
-      error: `Solo quedan ${disponibles.length} numero(s) disponibles en el sorteo. Escribinos por WhatsApp para coordinar.`,
+      error: `Solo quedan ${disponibles.length} número(s) disponibles en el sorteo. Escribinos por WhatsApp para coordinar.`,
     };
   }
 
@@ -91,58 +89,48 @@ function formatearNumerosSorteo(lista) {
   return lista.map(formatearNumeroSorteo).join(", ");
 }
 
-function textoSorteoWhatsApp(numeros, totalCompra) {
+function textoSorteoWhatsApp(numeros, cantidadProductos) {
   if (!numeros.length) return "";
 
-  const total = Number(totalCompra) || 0;
-  const etiqueta = numeros.length > 1 ? "Numeros asignados" : "Numero asignado";
+  const etiqueta = numeros.length > 1 ? "Números asignados" : "Número asignado";
 
-  let texto = "\n\n*SORTEO - Alentemos a la Scaloneta*\n";
-  texto += `${descripcionCantidadNumeros(total)}\n`;
+  let texto = "\n\n*SORTEO — Alentemos a la Scaloneta*\n";
+  texto += `${descripcionCantidadNumeros(cantidadProductos)}\n`;
   texto += `${etiqueta} (${numeros.length}): *${formatearNumerosSorteo(numeros)}*`;
   return texto;
 }
 
-function actualizarPreviewSorteo(cantidadItems, totalCompra) {
+function actualizarPreviewSorteo(cantidadProductos) {
   const el = document.getElementById("sorteo-preview");
   if (!el) return;
 
-  if (!cantidadItems || cantidadItems <= 0) {
+  const cantidad = cantidadNumerosPorPedido(cantidadProductos);
+
+  if (cantidad <= 0) {
     el.classList.add("d-none");
     el.innerHTML = "";
     return;
   }
 
-  const total = Number(totalCompra) || 0;
-  const cantidad = cantidadNumerosPorPedido(total);
-  const montoUno = SORTEO.MONTO_UN_NUMERO.toLocaleString("es-AR");
-  const montoDos = SORTEO.MONTO_DOBLE_NUMEROS.toLocaleString("es-AR");
+  const lineaNumeros =
+    cantidad === 1
+      ? `Este pedido te da <span class="sorteo-preview-num">1 número</span> para el sorteo.`
+      : `Este pedido te da <span class="sorteo-preview-num">${cantidad} números</span> para el sorteo.`;
 
-  let lineaNumeros = `Este pedido todavia <span class="sorteo-preview-num">no participa</span> del sorteo.`;
-  let lineaTip = `Supera los $${montoUno} y recibis <strong>1 numero</strong>. Si pasas los $${montoDos}, recibis <strong>2 numeros</strong>.`;
-  let titulo = "Sumate al sorteo";
-
-  if (cantidad === 1) {
-    titulo = "Participas del sorteo";
-    lineaNumeros = `Este pedido te da <span class="sorteo-preview-num">1 numero</span> para el sorteo.`;
-    lineaTip = `Si superas los $${montoDos}, recibis <strong>2 numeros</strong> en el mismo pedido.`;
-  }
-
-  if (cantidad === 2) {
-    titulo = "Participas del sorteo";
-    lineaNumeros = `Este pedido te da <span class="sorteo-preview-num">2 numeros</span> para el sorteo.`;
-    lineaTip = `Genial! Superaste los $${montoDos} y sumas doble chance en esta compra.`;
-  }
+  const lineaTip =
+    cantidad === 1
+      ? "Cada producto que agregás al carrito suma un número único."
+      : `Tenés ${cantidad} productos en el carrito, así que recibís ${cantidad} números distintos.`;
 
   el.classList.remove("d-none");
   el.innerHTML = `
     <div class="sorteo-preview-inner">
       <div class="sorteo-preview-icon" aria-hidden="true"><i class="bi bi-ticket-perforated-fill"></i></div>
       <div class="sorteo-preview-text">
-        <strong class="sorteo-preview-title">${titulo}</strong>
+        <strong class="sorteo-preview-title">¡Participás del sorteo!</strong>
         <p class="sorteo-preview-main">${lineaNumeros}</p>
         <p class="sorteo-preview-tip">${lineaTip}</p>
-        <p class="sorteo-preview-meta"><i class="bi bi-calendar-event" aria-hidden="true"></i> Sorteo: próximo viernes 20:30 hs · <i class="bi bi-truck" aria-hidden="true"></i> Premio a domicilio</p>
+        <p class="sorteo-preview-meta"><i class="bi bi-calendar-event" aria-hidden="true"></i> Sorteo: próximo sábado 21 hs · <i class="bi bi-truck" aria-hidden="true"></i> Premio a domicilio</p>
       </div>
     </div>
   `;

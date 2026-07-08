@@ -202,8 +202,12 @@ function actualizarCheckout() {
   if (totalEl) totalEl.textContent = `$${total.toLocaleString()}`;
   if (btnPriceEl) btnPriceEl.textContent = `$${total.toLocaleString()}`;
 
+  const totalProductos = typeof contarProductosEnCarrito === "function"
+    ? contarProductosEnCarrito(carrito)
+    : carrito.reduce((acc, item) => acc + (Number(item.cantidad) || 0), 0);
+
   if (typeof actualizarPreviewSorteo === "function") {
-    actualizarPreviewSorteo(carrito.length, subtotal);
+    actualizarPreviewSorteo(totalProductos);
   }
 }
 // =========================
@@ -293,8 +297,13 @@ function generarLinkWhatsApp() {
   let total = subtotal + envio;
   mensaje += `\n*Total: $${total.toLocaleString("es-AR")}*`;
 
-  // --- Sorteo: números únicos según monto del pedido ---
-  const cantidadNumeros = typeof cantidadNumerosPorPedido === "function" ? cantidadNumerosPorPedido(total) : 0;
+  // --- Sorteo: 1 número por cada producto en el carrito ---
+  const totalProductos = typeof contarProductosEnCarrito === "function"
+    ? contarProductosEnCarrito(carrito)
+    : carrito.reduce((acc, item) => acc + (Number(item.cantidad) || 0), 0);
+  const cantidadNumeros = typeof cantidadNumerosPorPedido === "function"
+    ? cantidadNumerosPorPedido(totalProductos)
+    : 0;
   const resultadoSorteo = typeof generarNumerosSorteo === "function"
     ? generarNumerosSorteo(cantidadNumeros)
     : { numeros: [], error: null };
@@ -312,7 +321,7 @@ function generarLinkWhatsApp() {
   }
 
   if (resultadoSorteo.numeros.length && typeof textoSorteoWhatsApp === "function") {
-    mensaje += textoSorteoWhatsApp(resultadoSorteo.numeros, total);
+    mensaje += textoSorteoWhatsApp(resultadoSorteo.numeros, totalProductos);
   }
 
   // --- Enviar a WhatsApp ---
