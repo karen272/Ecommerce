@@ -983,7 +983,7 @@ function enviarEventoWhatsApp() {
   }
 
   // Tu número de WhatsApp en formato internacional sin "+"
-  const telefono = "5492291459738"; // <-- cambiá por tu número real
+  const telefono = "5492291459739"; // <-- cambiá por tu número real
 
   // Armamos el texto
   const texto = `👤 Hola! Soy *${nombre}*.\n\n📌 Quiero consultar por un evento:\n${mensaje}`;
